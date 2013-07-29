@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# def                     
+route add 10.248.1.254 gw 10.248.1.254 dev br0
+route add 10.1.1.254 gw 10.248.1.254 dev br0    
+route add 10.253.1.254 gw 10.248.1.254 dev br0                                             
+route add -net 169.237.92.0 netmask 255.255.255.0 gw 10.248.1.254 dev br0
+route add default gw 10.248.1.254 dev br0    
+
+# 35
+route add 10.0.35.2 gw 10.0.35.2 dev adhoc1
+route add 10.0.35.3 gw 10.0.35.2 dev adhoc1
+route add 10.35.1.1 gw 10.0.35.2 dev adhoc1
+route add -net 10.35.0.0 netmask 255.255.0.0 gw 10.0.35.2 dev adhoc1
+
+# 36 (via 35)
+route add 10.0.36.2 gw 10.0.35.2 dev adhoc1
+route add 10.0.36.3 gw 10.0.35.2 dev adhoc1
+route add 10.36.1.1 gw 10.0.35.2 dev adhoc1
+route add -net 10.36.0.0 netmask 255.255.0.0 gw 10.0.35.2 dev adhoc1
+
+# 37 (via 35)
+route add 10.0.37.2 gw 10.0.35.2 dev adhoc1
+route add 10.0.37.3 gw 10.0.35.2 dev adhoc1
+route add 10.37.1.1 gw 10.0.35.2 dev adhoc1
+route add -net 10.37.0.0 netmask 255.255.0.0 gw 10.0.35.2 dev adhoc1

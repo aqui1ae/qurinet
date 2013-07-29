@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 17 (def)
+route add 10.0.17.2 gw 10.0.17.2 dev adhoc0
+route add 10.0.17.3 gw 10.0.17.2 dev adhoc0
+route add -net 10.17.0.0 netmask 255.255.0.0 gw 10.0.17.2 dev adhoc0
+route add -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.17.2 dev adhoc0
+route add -net 10.0.0.0 netmask 255.0.0.0 gw 10.0.17.2 dev adhoc0
+route add default gw 10.0.17.2 dev adhoc0

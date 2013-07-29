@@ -1,0 +1,153 @@
+#!/bin/bash
+
+# def
+route add 10.1.1.254 gw 10.1.1.254 dev br0
+route add 10.248.1.254 gw 10.1.1.254 dev br0
+route add 10.253.1.254 gw 10.1.1.254 dev br0
+route add -net 169.237.92.0 netmask 255.255.255.0 gw 10.1.1.254 dev br0
+route add default gw 10.1.1.254 dev br0
+
+# 2
+route add 10.0.2.2 gw 10.0.2.2 dev adhoc0
+route add 10.0.2.3 gw 10.0.2.2 dev adhoc0
+route add 10.0.2.1 gw 10.0.2.2 dev adhoc0
+route add 10.2.1.1 gw 10.0.2.2 dev adhoc0
+route add -net 10.2.0.0 netmask 255.255.0.0 gw 10.0.2.2 dev adhoc0
+
+# 252 (via 2)
+route add 10.0.252.3 gw 10.0.2.2 dev adhoc0
+route add 10.0.252.1 gw 10.0.2.2 dev adhoc0
+route add 10.252.1.1 gw 10.0.2.2 dev adhoc0
+route add -net 10.252.0.0 netmask 255.255.0.0 gw 10.0.2.2 dev adhoc0
+
+# 4 (via 2)
+route add 10.0.4.2 gw 10.0.2.2 dev adhoc0
+route add 10.0.4.3 gw 10.0.2.2 dev adhoc0
+route add 10.4.1.1 gw 10.0.2.2 dev adhoc0
+route add -net 10.4.0.0 netmask 255.255.0.0 gw 10.0.2.2 dev adhoc0
+
+# 5 (via 2)
+route add 10.0.5.2 gw 10.0.2.2 dev adhoc0
+route add 10.0.5.3 gw 10.0.2.2 dev adhoc0
+route add 10.5.1.1 gw 10.0.2.2 dev adhoc0
+route add -net 10.5.0.0 netmask 255.255.0.0 gw 10.0.2.2 dev adhoc0
+
+# 13
+route add 10.0.13.3 gw 10.0.13.3 dev adhoc1
+route add 10.0.13.2 gw 10.0.13.3 dev adhoc1
+route add 10.13.1.1 gw 10.0.13.3 dev adhoc1
+route add -net 10.13.0.0 netmask 255.255.0.0 gw 10.0.13.3 dev adhoc1
+
+# 3 (via 13)
+route add 10.0.3.3 gw 10.0.13.3 dev adhoc1
+route add 10.0.3.2 gw 10.0.13.3 dev adhoc1
+route add 10.3.1.1 gw 10.0.13.3 dev adhoc1
+route add -net 10.3.0.0 netmask 255.255.0.0 gw 10.0.13.3 dev adhoc1
+
+# 22 (via 13)
+route add 10.0.22.3 gw 10.0.13.3 dev adhoc1
+route add 10.0.22.2 gw 10.0.13.3 dev adhoc1
+route add 10.22.1.1 gw 10.0.13.3 dev adhoc1
+route add -net 10.22.0.0 netmask 255.255.0.0 gw 10.0.13.3 dev adhoc1
+			
+# 39 (via 13) 
+route add 10.0.39.3 gw 10.0.13.3 dev adhoc1
+route add 10.0.39.2 gw 10.0.13.3 dev adhoc1
+route add 10.39.1.1 gw 10.0.13.3 dev adhoc1
+route add -net 10.39.0.0 netmask 255.255.0.0 gw 10.0.13.3 dev adhoc1
+
+# 29
+route add 10.0.29.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.29.3 gw 10.0.29.2 dev adhoc0
+route add 10.29.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.29.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 6 (via 29) 
+route add 10.0.6.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.6.3 gw 10.0.29.2 dev adhoc0
+route add 10.6.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.6.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 14 (via 29) 
+route add 10.0.14.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.14.3 gw 10.0.29.2 dev adhoc0
+route add 10.14.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.14.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 17 (via 29)
+route add 10.0.17.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.17.3 gw 10.0.29.2 dev adhoc0
+route add 10.17.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.17.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 19 (via 29)
+route add 10.0.19.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.19.3 gw 10.0.29.2 dev adhoc0
+route add 10.19.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.19.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 15 (via 29)
+route add 10.0.15.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.15.3 gw 10.0.29.2 dev adhoc0
+route add 10.15.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.15.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 27 (via 29)
+route add 10.0.27.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.27.3 gw 10.0.29.2 dev adhoc0
+route add 10.27.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.27.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 7 (via 29) 
+route add 10.0.7.2 gw 10.0.29.2 dev adhoc0
+route add 10.0.7.3 gw 10.0.29.2 dev adhoc0
+route add 10.7.1.1 gw 10.0.29.2 dev adhoc0
+route add -net 10.7.0.0 netmask 255.255.0.0 gw 10.0.29.2 dev adhoc0
+
+# 10
+route add 10.0.10.3 gw 10.0.10.3 dev adhoc1
+route add 10.0.10.2 gw 10.0.10.3 dev adhoc1
+route add 10.10.1.1 gw 10.0.10.3 dev adhoc1
+route add -net 10.10.0.0 netmask 255.255.0.0 gw 10.0.10.3 dev adhoc1
+
+# 30 (via 10)
+route add 10.0.30.3 gw 10.0.10.3 dev adhoc1
+route add 10.0.30.2 gw 10.0.10.3 dev adhoc1
+route add 10.30.1.1 gw 10.0.10.3 dev adhoc1
+route add -net 10.30.0.0 netmask 255.255.0.0 gw 10.0.10.3 dev adhoc1
+
+# 20 (via 10)
+route add 10.0.20.3 gw 10.0.10.3 dev adhoc1
+route add 10.0.20.2 gw 10.0.10.3 dev adhoc1
+route add 10.20.1.1 gw 10.0.10.3 dev adhoc1
+route add -net 10.20.0.0 netmask 255.255.0.0 gw 10.0.10.3 dev adhoc1
+
+# 11 (via 10)
+route add 10.0.11.3 gw 10.0.10.3 dev adhoc1
+route add 10.0.11.2 gw 10.0.10.3 dev adhoc1
+route add 10.11.1.1 gw 10.0.10.3 dev adhoc1
+route add -net 10.11.0.0 netmask 255.255.0.0 gw 10.0.10.3 dev adhoc1
+
+# 21
+route add 10.0.21.3 gw 10.0.21.3 dev adhoc1
+route add 10.0.21.2 gw 10.0.21.3 dev adhoc1
+route add 10.21.1.1 gw 10.0.21.3 dev adhoc1
+route add -net 10.21.0.0 netmask 255.255.0.0 gw 10.0.21.3 dev adhoc1
+
+# 32
+route add 10.0.32.2 gw 10.0.32.2 dev adhoc0
+route add 10.0.32.3 gw 10.0.32.2 dev adhoc0
+route add 10.32.1.1 gw 10.0.32.2 dev adhoc0
+route add -net 10.32.0.0 netmask 255.255.0.0 gw 10.0.32.2 dev adhoc0
+
+# 33
+route add 10.0.33.2 gw 10.0.32.2 dev adhoc0
+route add 10.0.33.3 gw 10.0.32.2 dev adhoc0
+route add 10.33.1.1 gw 10.0.32.2 dev adhoc0
+route add -net 10.33.0.0 netmask 255.255.0.0 gw 10.0.32.2 dev adhoc0
+
+# 38
+route add 10.0.38.2 gw 10.0.32.2 dev adhoc0
+route add 10.0.38.3 gw 10.0.32.2 dev adhoc0
+route add 10.38.1.1 gw 10.0.32.2 dev adhoc0
+route add -net 10.38.0.0 netmask 255.255.0.0 gw 10.0.32.2 dev adhoc0
