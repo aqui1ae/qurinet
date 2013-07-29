@@ -7,4 +7,4 @@ route add 10.13.1.1 gw 10.0.13.2 dev adhoc0
 route add -net 10.13.0.0 netmask 255.255.0.0 gw 10.0.13.2 dev adhoc0
 route add -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.13.2 dev adhoc0
 route add -net 10.0.0.0 netmask 255.0.0.0 gw 10.0.13.2 dev adhoc0
-route add default netmask 255.0.0.0 gw 10.0.13.2 dev adhoc0
+route add default gw 10.0.13.2 dev adhoc0
