@@ -1,0 +1,55 @@
+#!/usr/bin/python
+# Chris ~29 April 2013
+# 
+# Scan a wireless interface with ``iwlist <dev> scanning'' and 
+# parse output into CSV format. This gives us a base line for 
+# studying Qurinet's topology. 
+
+import subprocess, sys, shlex, re
+
+if len(sys.argv) == 3:
+  interactive = False
+
+elif len(sys.argv) == 4 and sys.argv[3] == '-i': 
+  interactive = True
+
+else: 
+  print >>sys.stderr, "usage: scan <site> <iface> [-i]"
+  sys.exit(1)
+
+
+prog = re.compile("Address: (?P<mac>.*)\n\s+" + 
+                  "Channel:(?P<channel>[0-9]*)\n\s+" +
+                  "Frequency:(?P<freq>.*) GHz \(Channel [0-9]*\)\n\s+" +
+                  "Quality=(?P<quality>[0-9]*)/70\s+Signal level=(?P<signal>.*) dBm\s+\n\s+" +
+                  "Encryption key:(?P<encryption>.*)\s*\n\s+" +
+                  "ESSID:\"(?P<essid>.*)\"")
+                    
+try:
+  if not interactive: 
+    cmd = "sshpass -p %s ssh root@10.%s.1.1 \"/usr/sbin/iwlist adhoc%s scanning\"" % (raw_input(), sys.argv[1], sys.argv[2])
+  else:
+    cmd = "ssh root@10.%s.1.1 \"/usr/sbin/iwlist adhoc%s scanning\"" % (sys.argv[1], sys.argv[2])
+  args = shlex.split(cmd)
+  out, err = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()
+except subprocess.CalledProcessError:
+  print >>sys.stderr, "error: iwlist returned error status. Correct interface?"
+  sys.exit(1)
+
+sys.stdout = open("%s-%s.csv" % (sys.argv[1], sys.argv[2]), 'w')
+
+print "ESSID,Mac,Channel,Frequency(Ghz),Quality,Signal(dBm)"
+
+for res in prog.finditer(out):
+
+  res_dict = res.groupdict()
+  print "%s,%s,%s,%s,%s,%s" % (res_dict["essid"],
+                               res_dict["mac"],
+                               res_dict["channel"],
+                               res_dict["freq"],
+                               res_dict["quality"],
+                               res_dict["signal"])
+
+
+sys.stdout.close()
+

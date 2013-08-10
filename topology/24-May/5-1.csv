@@ -1,0 +1,3 @@
+ESSID,Mac,Channel,Frequency(Ghz),Quality,Signal(dBm)
+qurinet,22:22:22:22:22:22,11,2.462,70,0
+qurinet,22:22:22:22:22:22,1,2.412,25,-85

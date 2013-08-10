@@ -1,0 +1,42 @@
+#!/usr/bin/python
+# Chris ~29 April 2013
+# 
+# Scan a wireless interface with ``iwlist <dev> scanning'' and 
+# parse output into CSV format. This gives us a base line for 
+# studying Qurinet's topology. 
+
+import subprocess, sys, re
+
+if len(sys.argv) != 2:
+  print >>sys.stderr, "usage: scan <wlan0> >wlan0.csv"
+  sys.exit(1)
+
+prog = re.compile("Address: (?P<mac>.*)\n\s+" + 
+                  "Channel:(?P<channel>[0-9]*)\n\s+" +
+                  "Frequency:(?P<freq>.*) GHz \(Channel [0-9]*\)\n\s+" +
+                  "Quality=(?P<quality>[0-9]*)/70\s+Signal level=(?P<signal>.*) dBm\s+\n\s+" +
+                  "Encryption key:(?P<encryption>.*)\s*\n\s+" +
+                  "ESSID:\"(?P<essid>[0-9]*-[0-1])\"")
+                    
+try:
+  out = subprocess.check_output("iwlist %s scanning" % sys.argv[1], shell=True)
+except subprocess.CalledProcessError:
+  print >>sys.stderr, "error: iwlist returned error status. Correct interface?"
+  sys.exit(1)
+
+print "ESSID,Mac,Channel,Frequency(Ghz),Quality,Signal(dBm)"
+
+for res in prog.finditer(out):
+
+  res_dict = res.groupdict()
+  print "%s,%s,%s,%s,%s,%s" % (res_dict["essid"],
+                               res_dict["mac"],
+                               res_dict["channel"],
+                               res_dict["freq"],
+                               res_dict["quality"],
+                               res_dict["signal"])
+
+
+
+
+

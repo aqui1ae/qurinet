@@ -1,0 +1,63 @@
+==================================
+= PXE boot on the Sökris net4826 =
+==================================
+
+Unzip tftpboot.tgz into /srv/var
+
+  $ sudo mkdir -p /srv/var 
+  $ sudo chmod -R /srv/var
+  $ tar -zxf tftpboot.tgz
+  $ mv tftpboot/* /srv/var
+
+Download dnsmasq 
+ 
+  $ sudo apt-get install dnsmasq
+
+Append the following to /etc/dnsmasq.conf
+
+    ## deactivate DNS
+    port=0
+
+    ## listen on specific interface and/or address
+    interface=eth0
+    listen-address=192.168.1.1
+    bind-interfaces
+
+    ## DHCP configuration
+    dhcp-range=192.168.1.50,192.168.1.150,12h
+
+    # detect PXE clients
+    dhcp-vendorclass=set:pxe,PXEClient
+
+    # MACs we serve (MAC address of target) 
+    dhcp-host=00:00:24:C8:55:28 
+
+    # do not send default route and DNS server options
+    dhcp-option=option:router
+    dhcp-option=option:dns-server
+
+    # ignore request from unknown hosts
+    dhcp-ignore=tag:!known
+
+    # and ignore non-PXE booting
+    dhcp-ignore=tag:!pxe
+
+    ## TFTP configuration
+    enable-tftp
+    tftp-root=/srv/tftp
+    dhcp-boot=pxelinux.0
+
+Start the DHCP and TFTP servers, add an IP addresss for ethernet interface
+
+  # service network-manager stop
+  # ifconfig eth0 192.168.1.254 netmask 255.255.255.0
+  # service dnsmasq restart
+
+Boot the board, hit ^P at startup, and type 'boot f0' at the boot monitor. 
+Do your stuff, be happy. 
+
+Restore previous networking settings:
+
+  # service dnsmasq stop  
+  # service network-manager start
+

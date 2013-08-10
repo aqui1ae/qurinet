@@ -1,0 +1,34 @@
+The scripts in this directory can be used to generate the link layer network 
+topology of Qurinet. Each node has its adhoc interface configurations polled 
+with the ``iwlist`` command. For each site, we need the channel and txpower 
+of its two adhoc interfaces. Also, we scan for the available links on both 
+interfaces with ``iwlist <dev> scanning''. The scripts are:
+
+ getnodeinfo.sh - For each site pole the channels and txpowers of adhoc0 and
+   adhoc1 interfaces. These values are dumped to stdout in CSV format. This 
+   can be used to generate a site list for the topology program, i.e.: 
+   ./getnodeinfo.sh >sites.csv. 
+
+ getlinkinfo.sh - For each site, scan adhoc0 and adhoc1 with scan-site. You'll
+   be prompted for the Qurinet password which will be passed to all the sites. 
+   Careful!: if you type it wrong, it will tell you 'authentication failed' 
+   for every site, which totally sucks! To kill this program, type ^Z to stop
+   it, then type ``killall getlinkinfo.sh''. 
+
+ scan-site <N> <I> [-i] - Run ``iwlist adhocI scanning'' at site N. The 
+   output is parsed into CSV format with regular expressions. This particular 
+   program is indiscriminate of network ESSID; it outputs all that it sees. 
+   scan-site writes a file called N-I.csv to the working directory. ``sshpass''
+   is used by default so that the script can be used with getlinkinfo.sh. To 
+   get a password prompt, type ``./scan-site 10 0 -i''. 
+
+ topology <sites.csv> [-m {channel, signal, quality}] - Generate network topology 
+   from sites.csv produced by getnodeinfo.sh and the N-I.csv files produced by 
+   getlinkinfo.sh. The link files are expected to be in the working directory. 
+   By default, an adjacency list for all the nodes listed in sites.csv are is 
+   dumped to stdout. If 'channel', 'signal', or 'quality' is passed as a 
+   parameter, then an adjacency matrix separated by tabs is dumped to stdout.
+   This can be redirected to a file imported into a spreadsheet. The edges are
+   directional. Multipaths are listed in ascending order by channel number.
+
+Have fun! -Chris 13 May 2013

@@ -1,0 +1,214 @@
+#!/usr/bin/python
+# 
+# topology 
+#
+# Chris ~7 May 2013
+#
+# Create a graph of qurinet from link information gathered from the scan-site 
+# script. Allow thresholding of link quality. 
+#
+
+import sys, csv, re
+
+    ## Data structures ##
+
+class Edge: 
+
+  def __init__(self, quality, signal, channel, v): 
+    self.quality = quality
+    self.signal = signal
+    self.channel = channel
+    self.v = v
+    self.known_symmetric = False
+  
+class Node:
+
+  # Directional edges stored as an adjacency list. Edges are specified 
+  # by a 4-tuple: (LinkQuality, SignalLevel, Channel, Node) 
+
+  def __init__(self, name):
+    self.visited = 0 
+    self.name = name
+    self.neighbors = []
+
+  def addNeighbor(self, quality, signal, channel, v): 
+    self.neighbors.append(Edge(quality, signal, channel, v))
+
+class Graph:
+
+  def __init__(self):
+    self.nodes = {}
+    self.matrix = None
+
+  def addNode(self, name): 
+    if not self.nodes.has_key(name):
+      self.nodes[name] = Node(name)
+
+  def addEdge(self, u, v, quality, signal, channel):
+    self.addNode(u)
+    self.addNode(v)
+    self.nodes[u].addNeighbor(quality, signal, channel, self.nodes[v])
+  
+  # Check if a link is symmetric. This is defined as an edge u -> v and v <- u 
+  # with u.signal >= -80 and v.signal >= -80 and | u.signal - v.signal | <= 3.
+  def check_symmetry (self, u, e, min_signal = -80, signal_diff = 3):
+    if e.signal >= min_signal:
+      for f in e.v.neighbors: 
+        if f.v == u and f.signal >= min_signal and abs(f.signal - e.signal) <= signal_diff: 
+          f.known_symmetric = e.known_symmetric = True
+          return True
+    return False
+    
+  # Remove non-symmetric links from the graph. 
+  def thresh (self, u, min_signal = -80, signal_diff = 3):
+    for (_, u) in self.nodes.iteritems(): 
+      u.neighbors = filter(lambda edge: 
+        edge.known_symmetric or self.check_symmetry(u, edge, min_signal, signal_diff), u.neighbors)
+
+  # Save graph in a matrix representation. 
+  def makeMatrix(self):
+    names = self.nodes.keys()
+    names.sort()
+    index = dict( [(names[i], i) for i in range(len(names))] )
+    self.matrix = [[[] for _ in range(len(index))] for _ in range(len(index))]
+
+    for (name, u) in self.nodes.iteritems():
+      u.neighbors.sort(key=lambda edge: edge.channel) # sort by channel number
+      for edge in u.neighbors:
+        self.matrix[index[name]][index[edge.v.name]].append((edge.quality, edge.signal, edge.channel))
+
+  # Output graph as adjacency list.   
+  def printAdjacencyList(self):
+    print "%-10s%-10s%-10s%-10s%-10s" % ("src", "dest", "channel", "quality", "signal (dBm)")
+    for (name, u) in sorted(self.nodes.iteritems()):
+      print name
+      u.neighbors.sort(key=lambda edge: edge.quality) # sort by quality
+      for edge in u.neighbors:
+        print "          %-10s%-10s%-10s%-10s" % (edge.v.name, edge.channel, edge.quality, edge.signal)
+  
+  # Output graph as matrix whose cells are specified by `parameter`.
+  # Print multipaths in a comma-separated list given in ascending 
+  # order by channel number. 
+  def printMatrix(self, parameter="channel"):
+    if parameter == "quality":
+      parameter = 0
+    elif parameter == "signal":
+      parameter = 1
+    else:
+      parameter = 2
+
+    self.makeMatrix()
+    rev_index = self.nodes.keys()
+    rev_index.sort()
+
+    print "\t" + '\t'.join(map(lambda x: str(x), rev_index))
+    for i in range(len(rev_index)): 
+      sys.stdout.write(str(rev_index[i]) + "\t")
+      for j in range(len(rev_index)):
+        sys.stdout.write(','.join(
+          map(lambda tup: str(tup[parameter]), self.matrix[i][j])) + "\t")
+      print
+
+
+
+    ## Main ##
+
+try:
+  argc = len(sys.argv)
+  min_signal, signal_diff, matrix_output = (None, None, None)
+  if argc == 2:
+    pass
+  else:
+    i = 2
+    while i < argc: 
+      if sys.argv[i] == '-m': 
+        matrix_output = sys.argv[i+1]
+        i += 1
+      elif sys.argv[i] == '-t':
+        (min_signal, signal_diff) = map(int, sys.argv[i+1:i+3])
+        i += 2
+      elif sys.argv[i] == '--connected-components':
+        print >>sys.stderr, "warning (topology): connected component analysis not implemented."
+      else: 
+        print >>sys.stderr, "error: option '%s' not recognized." % sys.argv[i]
+        raise IndexError
+      i += 1
+
+except:
+  print >>sys.stderr, """\
+usage: topology sites.csv [-m {quality, signal, channel}] 
+                          [-t <min_signal> <signal_diff>]
+                          [--connected-components]
+
+   Display the topology of the network based on the link quality measurements. 
+   Optionally dump output as a tab-separated adjacency matrix that can be piped
+   into a CSV file and imported into a spreadsheet.
+
+   -m <P>     Specify the paramter to pring in the adjacency matrix. P is in 
+              {quality, signal, channel}. 
+
+   -t <M, d>  Remove asymmetric links from graph. For each u -> v for which 
+              v -> u is also in the graph, keep link iff M(u -> v) >= M, 
+              M(v -> u) >= M, and | M(u->v) - M(v->u) | <= d. 
+
+   --connected-components  Output the sets of conneced nodes. [TODO]
+   """
+  sys.exit(1)
+
+
+# Parse channel configuration file into sites: site -> (iface0, iface1).
+
+try:
+  sites = {}
+  rows = csv.reader(open(sys.argv[1], 'rb'), delimiter = ',', quotechar='"')
+  cols = rows.next() # first row is header
+  index = dict( [(cols[i], i) for i in range(len(cols))] )
+  for row in rows: # Get a mapping from site to the channels of its two interfaces. 
+    sites[row[index['site']]] = (row[index['adhoc0']], row[index['adhoc1']]) 
+
+except IOError:
+  print >>sys.stderr, "error (topology): channel config file not found."
+  sys.exit(1)
+
+
+# Parse link data for each site and interface specified by `sites`
+# into a graph.
+
+prog = re.compile("(?P<site_no>[0-9]*)-[01]")
+graph = Graph()
+
+for (site, channel) in sites.iteritems():
+  for iface in [0, 1]: 
+    try:
+      
+      rows = csv.reader(open('%s-%s.csv' % (site, iface), 'rb'), delimiter = ',', quotechar='"')
+      cols = rows.next() # first row is header
+      index = dict( [(cols[i], i) for i in range(len(cols))] )
+
+      for row in rows:
+        
+        # If interface is a member of Qurinet and it is on the same channel, 
+        # then add the link to the graph. 
+
+        res = prog.match(row[index['ESSID']])
+        if res and row[index['Channel']] == channel[iface]: 
+          neighbor = int(res.groupdict()['site_no'])
+          quality =  int(row[index['Quality']])
+          signal =   int(row[index['Signal(dBm)']])
+          graph.addEdge(int(site), neighbor, quality, signal, int(channel[iface]))
+
+    except IOError:
+      print >>sys.stderr, "warning (topology): '%s-%s.csv' not found." % (site, iface)
+
+
+# Threshold good links and output graph. 
+
+if min_signal and signal_diff: 
+  graph.thresh(graph.nodes[1], min_signal, signal_diff)
+
+if matrix_output:
+  graph.printMatrix(matrix_output)
+else:
+  graph.printAdjacencyList()
+
+
