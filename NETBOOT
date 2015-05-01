@@ -2,12 +2,13 @@
 = PXE boot on the Sökris net4826 =
 ==================================
 
-Unzip tftpboot.tgz into /srv/var
+Unzip tftp.tgz into /srv/var. This directory contains the "stable" qurinet image
+``qr-stable.img``. 
 
   $ sudo mkdir -p /srv/var 
   $ sudo chmod -R /srv/var
-  $ tar -zxf tftpboot.tgz
-  $ mv tftpboot/* /srv/var
+  $ tar -zxf tftp.tgz
+  $ mv tftp/* /srv/var
 
 Download dnsmasq 
  
