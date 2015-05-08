@@ -6,7 +6,7 @@ Unzip tftp.tgz into /srv/var. This directory contains the "stable" qurinet image
 ``qr-stable.img``. 
 
   $ sudo mkdir -p /srv/var 
-  $ sudo chmod -R /srv/var
+  $ sudo chmod 777 /srv/var
   $ tar -zxf tftp.tgz
   $ mv tftp/* /srv/var
 
@@ -14,14 +14,15 @@ Download dnsmasq
  
   $ sudo apt-get install dnsmasq
 
-Append the following to /etc/dnsmasq.conf
+Append the following to /etc/dnsmasq.conf (change where appropriate, if needed)
 
     ## deactivate DNS
     port=0
 
     ## listen on specific interface and/or address
-    interface=eth0
-    listen-address=192.168.1.1
+    ## !!!! change this to match server interface/ip that target will communicate with !!!!
+    interface=eth0  
+    #listen-address=192.168.1.1
     bind-interfaces
 
     ## DHCP configuration
@@ -30,22 +31,25 @@ Append the following to /etc/dnsmasq.conf
     # detect PXE clients
     dhcp-vendorclass=set:pxe,PXEClient
 
-    # MACs we serve (MAC address of target) 
-    dhcp-host=00:00:24:C8:55:28 
+    # MACs we serve (MAC address of target)
+    # !!!! change this to limit access to the server!!!!
+    #dhcp-host=00:00:24:C8:55:28
 
     # do not send default route and DNS server options
     dhcp-option=option:router
     dhcp-option=option:dns-server
 
     # ignore request from unknown hosts
-    dhcp-ignore=tag:!known
+    # !!!! uncomment following if target MAC is specified by dhcp-host above !!!!
+    #dhcp-ignore=tag:!known
 
     # and ignore non-PXE booting
     dhcp-ignore=tag:!pxe
 
     ## TFTP configuration
     enable-tftp
-    tftp-root=/srv/tftp
+    # !!!! change if pxe files are located in a different location !!!!
+    tftp-root=/srv/var
     dhcp-boot=pxelinux.0
 
 Start the DHCP and TFTP servers, add an IP addresss for ethernet interface
@@ -54,8 +58,15 @@ Start the DHCP and TFTP servers, add an IP addresss for ethernet interface
   # ifconfig eth0 192.168.1.254 netmask 255.255.255.0
   # service dnsmasq restart
 
-Boot the board, hit ^P at startup, and type 'boot f0' at the boot monitor. 
-Do your stuff, be happy. 
+
+Connect ethernet (above dnsmasq config assumed direct connection between server and soekris board) and serial cable (terminal) to soekris board target.
+Boot the board
+In the terminal, hit ctrl+P at startup, and type 'boot f0' at the boot monitor. 
+
+Wait for wmn_os prompt. This takes a couple minutes after ready is displayed.
+
+!!!!!!!!!TODO!!!!!!!!!!!!!
+copy image to target
 
 Restore previous networking settings:
 
