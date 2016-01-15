@@ -1,0 +1,56 @@
+#SITENO=11 set in boot/variables.conf
+IP_PREFIX="10"
+
+WIFI0=1 # turn on WIFI0
+POWER0=1600
+DIST0=2000
+RTS0=off
+FRAG0=1173
+WIFI0_MODE="11g"
+WIFI0_CHAN=11
+AHDEMO0=0
+AP0=1
+IP_AHDEMO0="$IP_PREFIX.0.$SITENO.2"
+MASK_AHDEMO0="16"
+
+WIFI1=1 # turn on WIFI1
+POWER1=1600
+DIST1=2000
+RTS1=off
+FRAG1=1173
+WIFI1_MODE="11g"
+WIFI1_CHAN=1
+AHDEMO1=1
+AP1=0
+IP_AHDEMO1="$IP_PREFIX.0.$SITENO.3"
+MASK_AHDEMO1="16"
+
+IP_BR0="$IP_PREFIX.$SITENO.1.1"
+MASK_BR0="16"
+
+OLSRD=0
+DHCPD=1
+
+function static_routes()
+{
+
+  #default to rest of network and internet
+  route add default gw 10.0.10.2 dev adhoc1
+  route add -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.10.2 dev adhoc1
+
+}
+
+function add_custom_rules()
+{
+  #doesn't change action, used for filtering statistics?
+	iptables -A FORWARD -i adhoc0 -o br0 -j ACCEPT
+	iptables -A FORWARD -i adhoc1 -o br0 -j ACCEPT
+	iptables -A FORWARD -i br0 -o adhoc0 -j ACCEPT
+	iptables -A FORWARD -i br0 -o adhoc1 -j ACCEPT
+	iptables -A FORWARD -i br0 -o br0 -j ACCEPT
+	iptables -A FORWARD -i adhoc0 -o adhoc1 -j ACCEPT
+	iptables -A FORWARD -i adhoc1 -o adhoc0 -j ACCEPT
+  iptables -A FORWARD -i adhoc0 -o adhoc0 -j ACCEPT
+	iptables -A FORWARD -i adhoc1 -o adhoc1 -j ACCEPT
+
+}

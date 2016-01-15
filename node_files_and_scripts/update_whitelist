@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $1 ]
+ then
+  SITENO=$1
+ else
+  echo usage: update_whitelist site_number
+  exit
+fi
+
+scp -i ../qurinet_sshkey -o ConnectTimeout=10 mac_whitelist root@10.$SITENO.1.1:/etc/mac_whitelist
+
+ssh -i ../qurinet_sshkey -o ConnectTimeout=10 root@10.$SITENO.1.1 "/bin/sync"
+
+ssh -i ../qurinet_sshkey -o ConnectTimeout=10 root@10.$SITENO.1.1 "/etc/init_mesh_net restart_ap"
+

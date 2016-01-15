@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ $1 ]
+ then
+  SITENO=$1
+ else
+  echo usage: update_site site_number
+  exit
+fi
+
+scp -i ../qurinet_sshkey -o ConnectTimeout=10 init_mesh_net root@10.$SITENO.1.1:/etc/init_mesh_net
+scp -i ../qurinet_sshkey -o ConnectTimeout=10 dnsmasq.conf.base root@10.$SITENO.1.1:/etc/dnsmasq.conf.base
+scp -i ../qurinet_sshkey -o ConnectTimeout=10 mac_whitelist root@10.$SITENO.1.1:/etc/mac_whitelist
+scp -i ../qurinet_sshkey -o ConnectTimeout=10 resolv.conf root@10.$SITENO.1.1:/etc/resolv.conf
+scp -i ../qurinet_sshkey -o ConnectTimeout=10 netd/netd.conf.site$SITENO root@10.$SITENO.1.1:/etc/netd/netd.conf.site$SITENO
+
+if [[ -z $2 && $2 == "reboot" ]]
+ then
+  ssh -i ../qurinet_sshkey -o ConnectTimeout=10 root@10.$SITENO.1.1 "/sbin/reboot"
+ else
+  ssh -i ../qurinet_sshkey -o ConnectTimeout=10 root@10.$SITENO.1.1 "/bin/sync"
+fi

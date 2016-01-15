@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#SITES="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 248 252"
+SITES="4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 248 252"
+
+
+for SITENO in $SITES; do
+  ping -c 1 -w 1 10.$SITENO.1.1 > /dev/null
+  if [ $? -eq 1 ]; then
+    echo "Could not reach site: "$SITENO
+  else
+    echo "Updating site: $SITENO"
+    ./update_site $SITENO
+    ./update_whitelist $SITENO
+  fi
+done
