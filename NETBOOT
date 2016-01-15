@@ -68,6 +68,14 @@ Wait for wmn_os prompt. This takes a couple minutes after ready is displayed.
 !!!!!!!!!TODO!!!!!!!!!!!!!
 copy image to target
 
+edit image_download.sh
+set config variables at top of script
+IMAGE_PAth="/srv/var/qr-stable.img"
+HOST_IP="192.168.1.254"
+
+setup eth0
+!!!?!!! ifconfig interface eth0 address 192.168.1.2
+
 Restore previous networking settings:
 
   # service dnsmasq stop  
