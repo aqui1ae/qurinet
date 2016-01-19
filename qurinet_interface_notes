@@ -1,0 +1,16 @@
+networking interfaces at each node:
+eth0 - ethernet port
+adhoc0 - on phy0 - 10.0.NODE#.2 - adhoc connection to qurinet wireless network (ssid qurinet, MAC 22:22:22:22:22:22, IP subnet 10.0.0.0/16)
+adhoc1 - on phy1 - 10.0.NODE#.3 - adhoc connection to qurinet wireless network (ssid qurinet, MAC 22:22:22:22:22:22, IP subnet 10.0.0.0/16)
+ap0 - on phy0 - managed access point ssid NODE#-0, unencrypted, mac whitelist
+ap1 - on phy1 - managed access point ssid NODE#-1, unencrypted, mac whitelist
+br0 - 10.NODE#.1.1/16 - bridge for eth0, ap0, ap1 - runs dhcp which assigns 10.NODE#.100.0/24 addresses
+
+
+adhoc/phy default parameters:
+channel: 1 or 11 (some on 6)
+power: 1600 mBm fixed
+rts/cts threashold: off
+fragmentation threashold: 1172
+bitrate: auto (legacy-2.4 12 Mbit/s for housing nodes)
+
