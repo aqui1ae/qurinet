@@ -194,6 +194,12 @@ LoadPlugin "olsrd_txtinfo.so.0.1"
   PlParam "accept" "0.0.0.0"
 }
 
+LoadPlugin "olsrd_jsoninfo.so.0.0"
+{
+  # the default port is 9090
+  PlParam "accept" "0.0.0.0"
+}
+
 # Interfaces and their rules
 # Omitted options will be set to the
 # default values. Multiple interfaces
