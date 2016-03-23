@@ -1,0 +1,44 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<script src="http://www.d3plus.org/js/d3.js"></script>
+<script src="http://www.d3plus.org/js/d3plus.js"></script>
+
+<div id="viz"></div>
+
+<script>
+
+  var boxAndWhisker = d3plus.viz();
+  var bandwidthDetail = [];
+  
+  var loadData = function(url) {
+    d3.json(url, function(error, json) {
+        if (error) return console.warn(error);
+        bandwidthDetail = json.bandwidthDetail;
+        update();
+    });  
+  }
+
+  init = function (url) {
+     d3.json(url, function(error, json) {
+        if (error) return console.warn(error);
+        bandwidthDetail = json.bandwidthDetail;
+        boxAndWhisker
+            .container("#viz")
+            .data(bandwidthDetail)
+            .type("box")
+            .id("interval")
+            .x("site")
+            .y("bandwidth")
+            .time({"format": "%j"})
+            .ui([{ 
+                "label": "Visualization Type",
+                "method": "type", 
+                "value": ["scatter","box"]
+            }])
+            .draw()
+    }); 
+  }
+  
+  init("bandwidth.json");
+</script> 

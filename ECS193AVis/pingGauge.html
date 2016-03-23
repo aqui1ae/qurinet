@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="c3.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="d3.min.js"></script>
+    <script type="text/javascript" src="c3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+    <div id="icmpSequenceChart"></div>
+    <div id="packetLossChart"></div>
+    <div id="RTTSummaryChart"></div>
+    <script type="text/javascript">
+      var REFRESH_INTERVAL_MS = 100;
+      var pingRow = [];
+      var pingRTTStatistics = [];
+      var pingPacketLoss = [];
+
+      var loadData = function(url) {
+        d3.json(url, function(error, json) {
+          if (error) return console.warn(error);
+
+          pingRow = [];
+          var x = [];
+          var xLength = 0;
+          for (var row = 0; row < json.columns.length; row++)
+            xLength = Math.max(xLength, json.columns[row].length);
+          for (var icmpSequence = 1; icmpSequence < xLength; icmpSequence++)
+            x[icmpSequence] = icmpSequence;
+          x[0] = 'x';
+          pingRow.push(x);
+          for (var populate = 0; populate < json.columns.length; populate++)
+            pingRow.push(json.columns[populate]);
+
+          pingRTTStatistics = json.RTTsummary;
+
+          pingPacketLoss = json.packetLoss;
+
+          updateCharts();
+        });
+      }
+
+      updateCharts = function() {
+        setTimeout(function() {
+          icmpSequenceChart.load({
+            columns: pingRow
+          });
+        }, REFRESH_INTERVAL_MS);
+        
+        setTimeout(function() {
+          packetLossChart.load({
+            columns: pingPacketLoss
+          });
+        }, REFRESH_INTERVAL_MS);
+        
+        setTimeout(function() {
+          RTTSummaryChart.load({
+            json: pingRTTStatistics,
+            keys: {
+              x: 'name',
+              value: ['rtt min', 'rtt avg', 'rtt max', 'rtt mdev']
+            }
+          });
+        }, REFRESH_INTERVAL_MS);
+      }
+
+      var icmpSequenceChart = c3.generate({
+        data: {
+          x: 'x',
+          columns: []
+        },
+        bindto: '#icmpSequenceChart'
+      });
+      
+      var packetLossChart = c3.generate({
+        data: {
+          columns: [],
+          type: 'donut',
+          onclick: function(d, i) {
+            console.log("onclick", d, i);
+          },
+          onmouseover: function(d, i) {
+            console.log("onmouseover", d, i);
+          },
+          onmouseout: function(d, i) {
+            console.log("onmouseout", d, i);
+          }
+        },
+        donut: {
+          title: "Packet Loss"
+        },
+        bindto: '#packetLossChart'
+      });
+
+      var RTTSummaryChart = c3.generate({
+        data: {
+          json: [],
+          keys: {
+            x: 'name',
+            value: ['rtt min', 'rtt avg', 'rtt max', 'rtt mdev']
+          },
+          type: 'bar',
+          labels: true
+        },
+        axis: {
+          x: {
+            type: 'category'
+          }
+        },
+        bindto: '#RTTSummaryChart'
+      });
+      
+      setInterval(function() {
+        loadData("pingRow.json");
+      }, 3000);
+
+    </script>
+  </body>
+
+</html>

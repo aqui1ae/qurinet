@@ -1,0 +1,27 @@
+{
+ "bandwidthDetail":
+    [
+        {"site": 101, "interval":"0.00-1.00", "bandwidth": 1},
+        {"site": 101, "interval":"1.00-2.00", "bandwidth": 5},
+        {"site": 101, "interval":"2.00-3.00", "bandwidth": 5.54},
+        {"site": 101, "interval":"3.00-4.00", "bandwidth": 4},
+        {"site": 101, "interval":"4.00-5.00", "bandwidth": 3},
+        {"site": 101, "interval":"5.00-6.00", "bandwidth": 15},
+        {"site": 101, "interval":"6.00-7.00", "bandwidth": 12.3},
+        {"site": 101, "interval":"7.00-8.00", "bandwidth": 11},
+        {"site": 101, "interval":"8.00-9.00", "bandwidth": 15.34},
+        {"site": 101, "interval":"9.00-10.00", "bandwidth": 16.4},
+
+        {"site": 102, "interval":"0.00-1.00", "bandwidth": 8.05},
+        {"site": 102, "interval":"1.00-2.00", "bandwidth": 8.96},
+        {"site": 102, "interval":"2.00-3.00", "bandwidth": 8.53},
+        {"site": 102, "interval":"3.00-4.00", "bandwidth": 8.81},
+        {"site": 102, "interval":"4.00-5.00", "bandwidth": 6.77},
+        {"site": 102, "interval":"5.00-6.00", "bandwidth": 7.88},
+        {"site": 102, "interval":"6.00-7.00", "bandwidth": 9.77},
+        {"site": 102, "interval":"7.00-8.00", "bandwidth": 9.66},
+        {"site": 102, "interval":"8.00-9.00", "bandwidth": 6.77},
+        {"site": 102, "interval":"9.00-10.00", "bandwidth": 8.55}
+
+    ]
+}
