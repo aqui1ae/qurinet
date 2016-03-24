@@ -1,17 +1,30 @@
 {
-  "columns":  
-   [
-     ["101 -> 102", 301, 2010, 1010, 4010, 1510, 2510,11000,1333,1],
-     ["35 -> 38", 1310, 3010, 2010, 3010, 2150,11]
-   ],
-   "RTTsummary":
-   [
-    {"name": "101 -> 102", "rtt min": 6.892, "rtt avg": 7.953, "rtt max": 6.028, "rtt mdev": 1.560},
-    {"name": "35 -> 38", "rtt min": 7.136, "rtt avg": 3.443, "rtt max": 3.028, "rtt mdev": 4.604} 
-   ],
-   "packetLoss":
-   [
-     ["101 -> 102", 2],
-     ["35 -> 38", 100]
-   ]
+    "RTTsummary": [
+        {
+            "name": "localhost -> google.com",
+            "rtt avg": "7.671",
+            "rtt max": "9.684",
+            "rtt mdev": "1.040",
+            "rtt min": "5.596"
+        }
+    ],
+    "columns": [
+        [
+            "localhost -> google.com",
+            5.596,
+            7.546,
+            7.488,
+            7.524,
+            8.107,
+            9.684,
+            7.828,
+            7.598
+        ]
+    ],
+    "packetLoss": [
+        [
+            "localhost -> google.com",
+            0.0
+        ]
+    ]
 }

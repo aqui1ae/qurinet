@@ -26,7 +26,10 @@
         boxAndWhisker
             .container("#viz")
             .data(bandwidthDetail)
-            .type("box")
+            .type({
+                "value": "box",
+                "mode": "extent"  
+            })
             .id("interval")
             .x("site")
             .y("bandwidth")

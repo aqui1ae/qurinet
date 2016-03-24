@@ -57,9 +57,24 @@
         }, REFRESH_INTERVAL_MS);
         
         setTimeout(function() {
-          packetLossChart.load({
-            columns: pingPacketLoss
-          });
+          var isLoss = false;
+          
+          for (var threshold = 0; threshold < pingPacketLoss; threshold++) {
+            if (pingPacketLoss[threshold][1] > 0) {
+              isLoss = true;
+            }
+          }
+          if (!isLoss) {
+            packetLossChart.load({
+                columns: pingPacketLoss
+            });
+          }
+          else {
+            packetLossChart.load({
+                columns: pingPacketLoss,
+                title: "No Packet Loss"
+            });
+          }
         }, REFRESH_INTERVAL_MS);
         
         setTimeout(function() {
@@ -96,7 +111,19 @@
           }
         },
         donut: {
-          title: "Packet Loss"
+          title: "Packet Loss",
+          label: {
+            format: function (value, ratio) {
+                      return value;
+                    }
+          }
+        },
+        tooltip: {
+            format: {
+                value: function(value,ratio, id) {
+                    return (ratio * 100) + "%";
+                }
+            }
         },
         bindto: '#packetLossChart'
       });

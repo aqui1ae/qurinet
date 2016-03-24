@@ -18,15 +18,13 @@
     ],
     "nodes": [
         {
-            "MPRSelector": [
-                "35"
-            ],
+            "MPRSelector": "35",
             "name": "101",
             "state": "#FFD700",
             "willingness": 7
         },
         {
-            "MPRSelector": [],
+            "MPRSelector": "",
             "name": "35",
             "state": "#3FFF00",
             "willingness": 1
