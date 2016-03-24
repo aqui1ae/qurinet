@@ -1,68 +1,49 @@
 {
-   "bandwidthDetail":[
-      {
-         "bandwidth":8902510.0,
-         "interval":"0-1.00063",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":9050260.0,
-         "interval":"1.00063-2.00156",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":8379270.0,
-         "interval":"2.00156-3.00108",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":8926630.0,
-         "interval":"3.00108-4.0003",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":8925750.0,
-         "interval":"4.0003-5.0113",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":9031390.0,
-         "interval":"5.0113-6.00406",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":9069010.0,
-         "interval":"6.00406-7.00036",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":9073610.0,
-         "interval":"7.00036-8.00127",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":9290970.0,
-         "interval":"8.00127-9.00121",
-         "site":35,
-         "to":101
-      },
-      {
-         "bandwidth":9198140.0,
-         "interval":"9.00121-10.0263",
-         "site":35,
-         "to":101
-      }
-   ]
+    "bandwidthDetail": [
+        {
+            "data": [
+                {
+                    "bandwidth": 8902510.0,
+                    "interval": 1.00063
+                },
+                {
+                    "bandwidth": 9050260.0,
+                    "interval": 2.00156
+                },
+                {
+                    "bandwidth": 8379270.0,
+                    "interval": 3.00108
+                },
+                {
+                    "bandwidth": 8926630.0,
+                    "interval": 4.0003
+                },
+                {
+                    "bandwidth": 8925750.0,
+                    "interval": 5.0113
+                },
+                {
+                    "bandwidth": 9031390.0,
+                    "interval": 6.00406
+                },
+                {
+                    "bandwidth": 9069010.0,
+                    "interval": 7.00036
+                },
+                {
+                    "bandwidth": 9073610.0,
+                    "interval": 8.00127
+                },
+                {
+                    "bandwidth": 9290970.0,
+                    "interval": 9.00121
+                },
+                {
+                    "bandwidth": 9198140.0,
+                    "interval": 10.0263
+                }
+            ],
+            "name": "10.0.35.3 -> 10.101.1.1"
+        }
+    ]
 }
-
-
-
-

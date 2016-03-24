@@ -4,16 +4,6 @@
             "bandwidth": 13844800,
             "source": "35",
             "target": "101"
-        },
-        {
-            "bandwidth": 14910600,
-            "source": "35",
-            "target": "101"
-        },
-        {
-            "bandwidth": 8977120,
-            "source": "35",
-            "target": "101"
         }
     ],
     "nodes": [
