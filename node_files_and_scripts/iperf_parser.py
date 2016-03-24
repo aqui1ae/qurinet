@@ -23,7 +23,7 @@ for iperf_file in os.listdir(IPERF_DIRECTORY):
             summary = interval['sum']
             data.append({
                 'bandwidth': float(summary['bits_per_second']),
-                'interval': '{}'.format(summary['end'])
+                'interval': float(summary['end'])
             })
 
         bandwidthDetails.append(bandwidthDetail)
