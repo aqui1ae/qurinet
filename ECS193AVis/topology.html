@@ -56,10 +56,13 @@
           .container("#viz")
           .type("network")
           .data(node_data)
+          .edges(connections)
           .edges({
             "size": "bandwidth",
             "label": "bandwidth",
-            "value": connections
+            "color": function(e) {
+                return e.linkColor;
+            }            
           })    
           .size("willingness")
           .id("name")
@@ -78,11 +81,14 @@
           .container("#viz")
           .type("network")
           .data(node_data)
+          .edges(connections)
           .edges({
             "size": "bandwidth",
             "label": "bandwidth",
-            "value": connections
-          })    
+            "color": function(e) {
+                return e.linkColor;
+            }
+          })     
           .size("willingness")
           .id("name")
           .color("state")
@@ -94,11 +100,14 @@
   {
     network
         .data(node_data)
+        .edges(connections)
         .edges({
-        "size": "bandwidth",
-        "label": "bandwidth",
-        "value": connections
-        })
+          "size": "bandwidth",
+          "label": "bandwidth",
+          "color": function(e) {
+                return e.linkColor;
+          }
+        })  
         .color("state")
         .tooltip("MPRSelector")
         .draw();
