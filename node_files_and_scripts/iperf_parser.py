@@ -8,7 +8,6 @@ INDEX_FOR_LOCAL_NAME = 2
 INDEX_FOR_REMOTE_NAME = 1
 
 bandwidthDetails = []
-data = []
 # Generate connection JSON objects from the iperf JSON output
 for iperf_file in os.listdir(IPERF_DIRECTORY):
     with open(IPERF_DIRECTORY + '/' + iperf_file) as jsonfile:
@@ -17,11 +16,11 @@ for iperf_file in os.listdir(IPERF_DIRECTORY):
 
         bandwidthDetail = {}
         bandwidthDetail['name'] = "{} -> {}".format(connection['local_host'], connection['remote_host'])
-        bandwidthDetail['data'] = data
+        bandwidthDetail['data'] = []
 
         for interval in jsonobj['intervals']:
             summary = interval['sum']
-            data.append({
+            bandwidthDetail['data'].append({
                 'bandwidth': float(summary['bits_per_second']),
                 'interval': float(summary['end'])
             })
