@@ -29,13 +29,13 @@ def parse(ping_output):
     matcher = re.compile(r'PING ([a-zA-Z0-9.\-]+) \(')
     host = _get_match_groups(ping_output, matcher)[0]
 
-    matcher = re.compile(r'(\d+) packets transmitted, (\d+) packets received, (\d+\.\d+)% packet loss')
+    matcher = re.compile(r'(\d+) packets transmitted, (\d+) packets received, (\d+\.?\d?)% packet loss')
     sent, received, packet_loss = _get_match_groups(ping_output, matcher)
 
     times = [float(time) for time in re.findall(r'.?time=(\d+\.\d+).?', ping_output)]
 
     try:
-        matcher = re.compile(r'(\d+.\d+)/(\d+.\d+)/(\d+.\d+)/(\d+.\d+)')
+        matcher = re.compile(r'(\d+.\d+)/(\d+.\d+)/(\d+.\d+)/(\d+.\d)')
         minping, avgping, maxping, jitter = _get_match_groups(ping_output,
                                                               matcher)
     except:
