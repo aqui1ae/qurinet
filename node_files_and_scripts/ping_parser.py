@@ -35,7 +35,7 @@ def parse(ping_output):
     times = [float(time) for time in re.findall(r'.?time=(\d+\.\d+).?', ping_output)]
 
     try:
-        matcher = re.compile(r'(\d+.\d+)/(\d+.\d+)/(\d+.\d+)/(\d+.\d)')
+        matcher = re.compile(r'(\d+.\d+)/(\d+.\d+)/(\d+.\d+)/?(\d+.\d)?')
         minping, avgping, maxping, jitter = _get_match_groups(ping_output,
                                                               matcher)
     except:
