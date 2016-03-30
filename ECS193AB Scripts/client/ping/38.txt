@@ -1,0 +1,13 @@
+PING 10.0.102.2 (10.0.102.2): 56 data bytes
+64 bytes from 10.0.102.2: seq=0 ttl=64 time=42.578 ms
+64 bytes from 10.0.102.2: seq=1 ttl=64 time=5.652 ms
+64 bytes from 10.0.102.2: seq=2 ttl=64 time=20.252 ms
+64 bytes from 10.0.102.2: seq=3 ttl=64 time=13.669 ms
+64 bytes from 10.0.102.2: seq=4 ttl=64 time=30.549 ms
+64 bytes from 10.0.102.2: seq=5 ttl=64 time=15.953 ms
+64 bytes from 10.0.102.2: seq=6 ttl=64 time=20.216 ms
+64 bytes from 10.0.102.2: seq=7 ttl=63 time=5.529 ms
+
+--- 10.0.102.2 ping statistics ---
+10 packets transmitted, 8 packets received, 20% packet loss
+round-trip min/avg/max = 5.529/19.299/42.578 ms

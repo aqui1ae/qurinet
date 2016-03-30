@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="c3.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="d3.min.js"></script>
+    <script type="text/javascript" src="c3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+    <div id="bandwidthDetailChart"></div>
+    <div id="bandwidthSummaryChart"></div>
+
+    <script type="text/javascript">
+      var REFRESH_INTERVAL_MS = 100;
+      var nodeDetailTemporary = {};
+      var nodeDetail = {};
+      var bandwidthDetail = [];
+
+      var bandwidthSummary = [];
+      var summaryTimestamps = {}
+      var timeStampCollection = {};
+      var xSummaryAxis = [];
+      
+      xSummaryAxis[0] = 'x';
+      bandwidthSummary.push(xSummaryAxis);
+
+      function getTimestamp() {
+        var date = new Date;
+
+        var seconds = date.getSeconds();
+        var minutes = date.getMinutes();
+        var hour = date.getHours();
+
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+
+        return (month + " " + day + " " + year + " " + hour + ":" + minutes +
+          ":" + seconds);
+      }
+
+      var loadData = function(url) {
+        d3.json(url, function(error, json) {
+          if (error) return console.warn(error);
+
+          for (var test = 0; test < json.bandwidthDetail.length; test++) {
+            var link = json.bandwidthDetail[test];
+
+            if (summaryTimestamps[link.name] == undefined) {
+              var yAxis = [];
+              yAxis[0] = link.name;
+              yAxis[1] = link.average;
+              bandwidthSummary.push(yAxis);
+              var timeStamp = getTimestamp().toString();
+              if (timeStampCollection[timeStamp] == undefined) {
+                bandwidthSummary[0].push(timeStamp);
+                timeStampCollection[timeStamp] = true;
+              }
+              summaryTimestamps[link.name] = link.date;
+            } else if (summaryTimestamps[link.name] != link.date) {
+              for (var search = 0; search < bandwidthSummary.length; search++) {
+                if (bandwidthSummary[search][0] == link.name) {
+                  bandwidthSummary[search].push(link.average);
+                  var timeStamp = getTimestamp().toString();
+                  if (timeStampCollection[timeStamp] == undefined) {
+                    bandwidthSummary[0].push(timeStamp);
+                    timeStampCollection[timeStamp] = true;
+                  }
+                  break;
+                }
+              }
+              summaryTimestamps[link.name] = link.date;
+            }
+
+            //console.log(bandwidthSummary);
+
+            nodeDetail[link.name] = 'x' + test.toString();
+
+            var xAxis = [];
+            var yAxis = [];
+
+            xAxis[0] = nodeDetail[link.name];
+            yAxis[0] = link.name;
+
+            var sample = json.bandwidthDetail[test].data;
+            for (var entry = 0; entry < sample.length; entry++) {
+              xAxis[entry + 1] = sample[entry].interval;
+              yAxis[entry + 1] = sample[entry].bandwidth;
+            }
+
+
+            bandwidthDetail.push(xAxis);
+            bandwidthDetail.push(yAxis);
+          }
+          nodeDetailTemporary = JSON.parse(JSON.stringify(nodeDetail));
+
+          updateCharts();
+        });
+      }
+
+      updateCharts = function() {
+        setTimeout(function() {
+          bandwidthChart.load({
+            xs: nodeDetailTemporary,
+            columns: bandwidthDetail
+          });
+        }, REFRESH_INTERVAL_MS);
+
+        setTimeout(function() {
+          bandwidthSummaryChart.load({
+            columns: bandwidthSummary
+          });
+        }, REFRESH_INTERVAL_MS);
+      }
+
+      var bandwidthChart = c3.generate({
+        data: {
+          xs: {
+            /*'data1': 'x0',
+            'data2': 'x1',*/
+          },
+          columns: [
+            /* ['x0', 10, 30, 45, 50, 70, 100],
+             ['data1', 30, 200, 100, 400, 150, 250],
+             ['x1', 30, 50, 75, 100, 120],
+             ['data2', 20, 180, 240, 100, 190]*/
+          ]
+        },
+        bindto: '#bandwidthDetailChart'
+      });
+
+      var bandwidthSummaryChart = c3.generate({
+        data: {
+          x: 'x',
+          xFormat: '%m %e %Y %H:%M:%S',
+          columns: [
+            /*  ['x', '3 29 2016 17:00:00', '3 29 2016 17:03:00'],
+              ['data1', 30, 200],
+              ['data2', 130, 340]*/
+          ]
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%m %e %Y %H:%M:%S'
+            }
+          }
+        },
+        bindto: '#bandwidthSummaryChart'
+      });
+
+      setInterval(function() {
+        loadData("bandwidth.json");
+      }, 5000);
+
+    </script>
+  </body>
+
+</html>

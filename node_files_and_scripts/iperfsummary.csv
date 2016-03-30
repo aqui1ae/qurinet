@@ -1,2 +1,0 @@
-local_host,local_port,remote_host,remote_port,start,end,bytes,bits_per_second,min,firstQuartile,median,thirdQuartile,max
-10.0.35.3,37576,10.101.1.1,5201,0,10.0263,11250960,8977120.0,8379270.0,8925970.0,9040825.0,9072460.0,9290970.0
