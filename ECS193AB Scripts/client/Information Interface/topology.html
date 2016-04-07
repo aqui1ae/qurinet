@@ -14,6 +14,11 @@
   var data;
   var network = d3plus.viz();
   var node_data = [];
+  var positions = [
+    {"name": "38", "x": 25, "y": 5},
+    {"name": "35", "x": 8, "y": 25},
+    {"name": "102", "x": 8, "y": 5}
+  ];
   var connections = [];
   var SNAPSHOT_WIDTH = 100;
   var SNAPSHOT_HEIGHT = 100;
@@ -23,6 +28,7 @@
       .container("#viz")
       .type("network")
       .data(node_data)
+      .nodes(positions)
       .edges(connections)
       .edges({
         "size": "bandwidth",
