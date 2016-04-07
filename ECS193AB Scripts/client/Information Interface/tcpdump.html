@@ -23,7 +23,7 @@ th {
 <body>
 <script src="http://d3js.org/d3.v3.js"></script>​
 <script>
-jdata = [
+/*jdata = [
    {
       "router":"site102",
       "fileinfo":[
@@ -1913,12 +1913,23 @@ jdata = [
    }
 ];
 
+*/
 
-
-d3.select("body").selectAll("table")
-    .data([jdata])
-  .enter().append("table")
-    .call(recurse);
+var jdata; //a global
+function init(filename) {
+    d3.json(filename, function(error, json) {
+        if (error) return console.warn(error);
+        jdata = json;
+        
+        d3.select("table").remove();
+        
+        d3.select("body").selectAll("table")
+            .data([jdata])
+             .enter().append("table")
+            .call(recurse);
+        
+    });
+}
 
 function recurse(sel) {
   // sel is a d3.selection of one or more empty tables
@@ -1966,4 +1977,10 @@ function recurse(sel) {
         .call(recurse);
   });
 }
+
+setInterval(function() {
+    init("tcpdump.json");
+}, 3000);
+
+
 </script>
