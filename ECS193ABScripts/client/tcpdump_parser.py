@@ -6,6 +6,7 @@ import subprocess
 TCPDUMP_DIRECTORY = 'tcpdump/'
 FILE_BASE_NAME = 'tcpdump_'
 
+MAX_TIME = 99
 SOURCE_IP = 2
 SIZE = 12
 TIME = 1
@@ -75,7 +76,6 @@ Test on https://jsonformatter.curiousconcept.com/# after removing "//" comments.
 
 nodeList = []
 
-
 for tcpdump_file in os.listdir(TCPDUMP_DIRECTORY):
     router = tcpdump_file.split('_')[1]
     output = subprocess.check_output("tshark -r " + (TCPDUMP_DIRECTORY + tcpdump_file) + " -R olsr -2", shell=True)
@@ -89,18 +89,37 @@ for tcpdump_file in os.listdir(TCPDUMP_DIRECTORY):
     
     #JSON file variables
     fileinfo = []
-    
+    routerSummary = []
+    summaryData = { }
+
     for entry in range(len(summary)):
         packet = summary[entry]
         message = numbers[entry]
         
         details = filter(None, packet.split(' '))
         types = message.split(',')
-        
+                 
+
         if len(details) > 0:
             if data.has_key(details[SOURCE_IP]) == False:
 	        data[details[SOURCE_IP]] = []
-
+                summaryData[details[SOURCE_IP]] = { }
+                summaryData[details[SOURCE_IP]] = {
+                   'size'  : 0,
+                   'HNA'   : 0,
+                   'TC'    : 0,
+                   'HELLO' : 0,
+                   'MID'   : 0,
+                   'COUNT' : 0
+                }
+             
+            summaryData[details[SOURCE_IP]]['size']  = summaryData[details[SOURCE_IP]]['size']  + int(details[SIZE])
+            summaryData[details[SOURCE_IP]]['HNA']  = summaryData[details[SOURCE_IP]]['HNA']  + types.count(HNA)
+            summaryData[details[SOURCE_IP]]['TC']  = summaryData[details[SOURCE_IP]]['TC']  + types.count(TC)
+            summaryData[details[SOURCE_IP]]['HELLO']  = summaryData[details[SOURCE_IP]]['HELLO']  + types.count(HELLO)
+            summaryData[details[SOURCE_IP]]['MID']  = summaryData[details[SOURCE_IP]]['MID']  + types.count(MID)
+            summaryData[details[SOURCE_IP]]['COUNT']  = summaryData[details[SOURCE_IP]]['COUNT']  + 1
+       
             data[details[SOURCE_IP]].append({
               'time':  float(details[TIME]),
               'size':  int(details[SIZE]),
@@ -115,10 +134,26 @@ for tcpdump_file in os.listdir(TCPDUMP_DIRECTORY):
             'node': key,
             'details': val
         })
-        
+
+    for key, val in summaryData.items():
+        val['size'] = (float(val['size']) / val['COUNT'])
+        val['HNA'] = (float(val['HNA']) / MAX_TIME) * 60 
+        val['TC'] = (float(val['TC']) / MAX_TIME) * 60 
+        val['HELLO'] = (float(val['HELLO']) / MAX_TIME) * 60 
+        val['MID'] = (float(val['MID']) / MAX_TIME) * 60 
+        routerSummary.append({
+            'node': key,
+            'Size per Minute': val['size'],
+            'HNA per Minute': val['HNA'],
+            'TC per Minute': val['TC'],
+            'HELLO per Minute': val['HELLO'],
+            'MID per Minute': val['MID']
+        })
+ 
     nodeList.append({
         'router': router,
-        'fileinfo':fileinfo
+        'fileinfo':fileinfo,
+        'summary': routerSummary
     })
 
 print json.dumps(nodeList)
