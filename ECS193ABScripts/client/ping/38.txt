@@ -1,0 +1,15 @@
+PING 10.0.101.2 (10.0.101.2): 56 data bytes
+64 bytes from 10.0.101.2: seq=0 ttl=64 time=5.388 ms
+64 bytes from 10.0.101.2: seq=1 ttl=64 time=3.352 ms
+64 bytes from 10.0.101.2: seq=2 ttl=64 time=3.735 ms
+64 bytes from 10.0.101.2: seq=3 ttl=64 time=3.330 ms
+64 bytes from 10.0.101.2: seq=4 ttl=64 time=3.344 ms
+64 bytes from 10.0.101.2: seq=5 ttl=64 time=3.733 ms
+64 bytes from 10.0.101.2: seq=6 ttl=64 time=3.390 ms
+64 bytes from 10.0.101.2: seq=7 ttl=64 time=3.315 ms
+64 bytes from 10.0.101.2: seq=8 ttl=64 time=3.973 ms
+64 bytes from 10.0.101.2: seq=9 ttl=64 time=3.333 ms
+
+--- 10.0.101.2 ping statistics ---
+10 packets transmitted, 10 packets received, 0% packet loss
+round-trip min/avg/max = 3.315/3.689/5.388 ms
