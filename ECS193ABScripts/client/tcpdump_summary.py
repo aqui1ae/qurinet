@@ -143,7 +143,11 @@ for tcpdump_file in os.listdir(TCPDUMP_DIRECTORY):
         val['MID'] = (float(val['MID']) / MAX_TIME) * 60 
         routerSummary.append({
             'node': key,
-            'summary': val
+            'Size per Minute': val['size'],
+            'HNA per Minute': val['HNA'],
+            'TC per Minute': val['TC'],
+            'HELLO per Minute': val['HELLO'],
+            'MID per Minute': val['MID']
         })
  
     nodeList.append({
