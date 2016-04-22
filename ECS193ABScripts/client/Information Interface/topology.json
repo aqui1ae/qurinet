@@ -1,0 +1,114 @@
+{
+    "connections": [
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#000000",
+            "source": "38",
+            "target": "101"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.291382347319865,
+            "linkColor": "#000000",
+            "source": "38",
+            "target": "35"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#A10C68",
+            "source": "38",
+            "target": "102"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#000000",
+            "source": "101",
+            "target": "38"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#000000",
+            "source": "101",
+            "target": "35"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#A10C68",
+            "source": "101",
+            "target": "102"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.321625493627122,
+            "linkColor": "#000000",
+            "source": "35",
+            "target": "38"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#000000",
+            "source": "35",
+            "target": "101"
+        },
+        {
+            "bandwidth": 830981,
+            "etx": 1.1185682326621924,
+            "linkColor": "#A10C68",
+            "source": "35",
+            "target": "102"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#A10C68",
+            "source": "102",
+            "target": "38"
+        },
+        {
+            "bandwidth": 1,
+            "etx": 1.0,
+            "linkColor": "#A10C68",
+            "source": "102",
+            "target": "101"
+        },
+        {
+            "bandwidth": 5022820,
+            "etx": 1.1185682326621924,
+            "linkColor": "#A10C68",
+            "source": "102",
+            "target": "35"
+        }
+    ],
+    "nodes": [
+        {
+            "MPRSelector": "35,0,0",
+            "name": "102",
+            "state": "#FFD700",
+            "willingness": 7
+        },
+        {
+            "MPRSelector": "35",
+            "name": "101",
+            "state": "#FFD700",
+            "willingness": 3
+        },
+        {
+            "MPRSelector": "",
+            "name": "35",
+            "state": "#00FF00",
+            "willingness": 1
+        },
+        {
+            "MPRSelector": "102,35,0",
+            "name": "38",
+            "state": "#FFD700",
+            "willingness": 7
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+PING 10.0.102.2 (10.0.102.2) 56(84) bytes of data.
+64 bytes from 10.0.102.2: icmp_req=1 ttl=64 time=5.19 ms
+64 bytes from 10.0.102.2: icmp_req=2 ttl=64 time=3.00 ms
+64 bytes from 10.0.102.2: icmp_req=3 ttl=64 time=3.23 ms
+64 bytes from 10.0.102.2: icmp_req=4 ttl=64 time=2.93 ms
+64 bytes from 10.0.102.2: icmp_req=5 ttl=64 time=3.21 ms
+64 bytes from 10.0.102.2: icmp_req=6 ttl=64 time=3.22 ms
+64 bytes from 10.0.102.2: icmp_req=7 ttl=64 time=2.96 ms
+64 bytes from 10.0.102.2: icmp_req=8 ttl=64 time=3.02 ms
+64 bytes from 10.0.102.2: icmp_req=9 ttl=64 time=3.09 ms
+64 bytes from 10.0.102.2: icmp_req=10 ttl=64 time=3.18 ms
+
+--- 10.0.102.2 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9191ms
+rtt min/avg/max/mdev = 2.934/3.308/5.199/0.641 ms

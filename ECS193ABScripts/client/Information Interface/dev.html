@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="c3.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="d3.min.js"></script>
+    <script type="text/javascript" src="c3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="bandwidthTxChart"></div>
+    <div id="bandwidthRxChart"></div>
+    <div id="bandwidthTxPacketChart"></div>
+    <div id="bandwidthRxPacketChart"></div>
+    <script type="text/javascript">
+      var REFRESH_INTERVAL_MS = 100;
+      var data;
+      var collection = ['tx', 'rx', 'tx_packets', 'rx_packets'];
+      //Contains total Tx, Rx, Tx Packet, and Rx Packet information in arrays.
+      var bandwidthSummary = {}
+
+      //Contains each router's Tx, Rx, Tx Packet, and Rx Packet information for each interface.
+      var items = {}
+
+      var timeStampCollection = {};
+      var xAxis = [];
+      xAxis[0] = 'x';
+
+      function setup(metrics) {
+        for (var initialize = 0; initialize < metrics.length; initialize++) {
+          bandwidthSummary[metrics[initialize]] = [];
+          bandwidthSummary[metrics[initialize]].push(xAxis);
+          items[metrics[initialize]] = {};
+        }
+      }
+
+      function getTimestamp() {
+        var date = new Date;
+
+        var seconds = date.getSeconds();
+        var minutes = date.getMinutes();
+        var hour = date.getHours();
+
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+
+        return (month + " " + day + " " + year + " " + hour + ":" + minutes +
+          ":" + seconds);
+      }
+
+      var loadData = function (url) {
+        d3.json(url, function (error, json) {
+          if (error) return console.warn(error);
+          data = json;
+
+          var timeStamp = getTimestamp().toString();
+
+          for (var metric in bandwidthSummary) {
+            bandwidthSummary[metric][0].push(timeStamp);
+          }
+
+          for (var router = 0; router < json.length; router++) { //routers
+            for (var siteno in json[router]) { //site number
+              for (var dev = 0; dev < json[router][siteno].length; dev++) { //interface
+                for (info in json[router][siteno][dev]) {
+                  if (info != 'interface') {
+                    var index = siteno.toString() + " : " + json[router][
+                      siteno
+                    ][dev].interface + " : " + info;
+                    if (items[info][index] == undefined) {
+                      items[info][index] = [];
+                      items[info][index].push(index);
+                    }
+                    items[info][index].push(parseInt(json[router][siteno]
+                      [dev][info]));
+                  }
+                }
+              }
+            }
+          }
+          for (var metric = 0; metric < collection.length; metric++) {
+            var interfaceArray = $.map(items[collection[metric]],
+              function (value, index) {
+                return [value];
+              });
+            for (var put = 0; put < interfaceArray.length; put++)
+              bandwidthSummary[collection[metric]].push(interfaceArray[
+                put]);
+          }
+
+          updateCharts();
+        });
+      }
+
+      updateCharts = function () {
+        setTimeout(function () {
+          bandwidthTxChart.load({
+            columns: bandwidthSummary['tx']
+          });
+        }, REFRESH_INTERVAL_MS);
+        setTimeout(function () {
+          bandwidthRxChart.load({
+            columns: bandwidthSummary['rx']
+          });
+        }, REFRESH_INTERVAL_MS);
+        setTimeout(function () {
+          bandwidthTxPacketChart.load({
+            columns: bandwidthSummary['tx_packets']
+          });
+        }, REFRESH_INTERVAL_MS);
+        setTimeout(function () {
+          bandwidthRxPacketChart.load({
+            columns: bandwidthSummary['rx_packets']
+          });
+        }, REFRESH_INTERVAL_MS);
+        console.log(data);
+      }
+
+      var bandwidthTxChart = c3.generate({
+        data: {
+          x: 'x',
+          xFormat: '%m %e %Y %H:%M:%S',
+          columns: [
+          ]
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%m %e %Y %H:%M:%S'
+            }
+          }
+        },
+        bindto: '#bandwidthTxChart'
+      });
+
+      var bandwidthRxChart = c3.generate({
+        data: {
+          x: 'x',
+          xFormat: '%m %e %Y %H:%M:%S',
+          columns: [
+          ]
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%m %e %Y %H:%M:%S'
+            }
+          }
+        },
+        bindto: '#bandwidthRxChart'
+      });
+
+
+      var bandwidthTxPacketChart = c3.generate({
+        data: {
+          x: 'x',
+          xFormat: '%m %e %Y %H:%M:%S',
+          columns: [
+          ]
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%m %e %Y %H:%M:%S'
+            }
+          }
+        },
+        bindto: '#bandwidthTxPacketChart'
+      });
+      var bandwidthRxPacketChart = c3.generate({
+        data: {
+          x: 'x',
+          xFormat: '%m %e %Y %H:%M:%S',
+          columns: [
+          ]
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%m %e %Y %H:%M:%S'
+            }
+          }
+        },
+        bindto: '#bandwidthRxPacketChart'
+      });
+
+      setup(collection);
+      setInterval(function () {
+        loadData("dev.json");
+      }, 5000);
+
+    </script>
+  </body>
+
+</html>

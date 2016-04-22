@@ -1,0 +1,638 @@
+{
+  "systemTime": 1458735998,
+  "timeSinceStartup": 4417659,
+  "neighbors": [
+    {
+      "ipAddress": "10.0.102.2",
+      "symmetric": true,
+      "multiPointRelay": true,
+      "multiPointRelaySelector": false,
+      "willingness": 7,
+      "twoHopNeighborCount": 2
+    },
+    {
+      "ipAddress": "10.0.35.2",
+      "symmetric": true,
+      "multiPointRelay": false,
+      "multiPointRelaySelector": true,
+      "willingness": 1,
+      "twoHopNeighborCount": 2
+    },
+    {
+      "ipAddress": "10.38.0.1",
+      "symmetric": true,
+      "multiPointRelay": true,
+      "multiPointRelaySelector": false,
+      "willingness": 7,
+      "twoHopNeighborCount": 2
+    }
+  ],
+  "links": [
+    {
+      "localIP": "10.0.101.2",
+      "remoteIP": "10.0.102.2",
+      "validityTime": 38038,
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "linkCost": 1024
+    },
+    {
+      "localIP": "10.1.101.3",
+      "remoteIP": "10.0.102.3",
+      "validityTime": 19642,
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 0.000,
+      "linkCost": 4194304
+    },
+    {
+      "localIP": "10.0.101.2",
+      "remoteIP": "10.0.35.2",
+      "validityTime": 39491,
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "linkCost": 1024
+    },
+    {
+      "localIP": "10.1.101.3",
+      "remoteIP": "10.1.35.3",
+      "validityTime": 36347,
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "linkCost": 1024
+    },
+    {
+      "localIP": "10.0.101.2",
+      "remoteIP": "10.0.38.2",
+      "validityTime": 33719,
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "linkCost": 1024
+    },
+    {
+      "localIP": "10.1.101.3",
+      "remoteIP": "10.0.38.3",
+      "validityTime": 1351,
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 0.000,
+      "linkCost": 4194304
+    }
+  ],
+  "routes": [
+    {
+      "destination": "10.0.35.2",
+      "genmask": 32,
+      "gateway": "10.0.35.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.0.38.2",
+      "genmask": 32,
+      "gateway": "10.0.38.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.0.38.3",
+      "genmask": 32,
+      "gateway": "10.0.38.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.0.102.2",
+      "genmask": 32,
+      "gateway": "10.0.102.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.0.102.3",
+      "genmask": 32,
+      "gateway": "10.0.102.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.1.35.3",
+      "genmask": 32,
+      "gateway": "10.0.35.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.35.0.0",
+      "genmask": 16,
+      "gateway": "10.0.35.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.38.0.0",
+      "genmask": 16,
+      "gateway": "10.0.38.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.38.0.1",
+      "genmask": 32,
+      "gateway": "10.0.38.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    },
+    {
+      "destination": "10.102.0.0",
+      "genmask": 16,
+      "gateway": "10.0.102.2",
+      "metric": 1,
+      "rtpMetricCost": 1024,
+      "networkInterface": "adhoc0"
+    }
+  ],
+  "hna": [
+    {
+      "destination": "10.102.0.0",
+      "genmask": 16,
+      "gateway": "10.0.102.2",
+      "validityTime": 27581
+    },
+    {
+      "destination": "10.35.0.0",
+      "genmask": 16,
+      "gateway": "10.0.35.2",
+      "validityTime": 28053
+    },
+    {
+      "destination": "10.38.0.0",
+      "genmask": 16,
+      "gateway": "10.38.0.1",
+      "validityTime": 28874
+    }
+  ],
+  "mid": [
+    {
+      "ipAddress": "10.0.102.2",
+      "aliases": [
+        {
+          "ipAddress": "10.0.102.3",
+          "validityTime": 29023
+        }
+      ]
+    },
+    {
+      "ipAddress": "10.0.35.2",
+      "aliases": [
+        {
+          "ipAddress": "10.1.35.3",
+          "validityTime": 29023
+        }
+      ]
+    },
+    {
+      "ipAddress": "10.38.0.1",
+      "aliases": [
+        {
+          "ipAddress": "10.0.38.2",
+          "validityTime": 29023
+        },
+        {
+          "ipAddress": "10.0.38.3",
+          "validityTime": 29023
+        }
+      ]
+    }
+  ],
+  "topology": [
+    {
+      "destinationIP": "10.101.0.1",
+      "lastHopIP": "10.38.0.1",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 28971
+    },
+    {
+      "destinationIP": "10.0.35.2",
+      "lastHopIP": "10.38.0.1",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 0.748,
+      "tcEdgeCost": 1367,
+      "validityTime": 28971
+    },
+    {
+      "destinationIP": "10.0.102.2",
+      "lastHopIP": "10.38.0.1",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 28971
+    },
+    {
+      "destinationIP": "10.38.0.1",
+      "lastHopIP": "10.101.0.1",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 0
+    },
+    {
+      "destinationIP": "10.0.35.2",
+      "lastHopIP": "10.101.0.1",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 0
+    },
+    {
+      "destinationIP": "10.0.102.2",
+      "lastHopIP": "10.101.0.1",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 0
+    },
+    {
+      "destinationIP": "10.38.0.1",
+      "lastHopIP": "10.0.35.2",
+      "linkQuality": 0.748,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1367,
+      "validityTime": 28444
+    },
+    {
+      "destinationIP": "10.101.0.1",
+      "lastHopIP": "10.0.35.2",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 28444
+    },
+    {
+      "destinationIP": "10.0.102.2",
+      "lastHopIP": "10.0.35.2",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 28444
+    },
+    {
+      "destinationIP": "10.38.0.1",
+      "lastHopIP": "10.0.102.2",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 28960
+    },
+    {
+      "destinationIP": "10.101.0.1",
+      "lastHopIP": "10.0.102.2",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 28960
+    },
+    {
+      "destinationIP": "10.0.35.2",
+      "lastHopIP": "10.0.102.2",
+      "linkQuality": 1.000,
+      "neighborLinkQuality": 1.000,
+      "tcEdgeCost": 1024,
+      "validityTime": 28960
+    }
+  ],
+  "gateways": [
+  ],
+  "interfaces": [
+    {
+      "name": "eth0",
+      "linkQualityMultipliers": [
+      ],
+      "state": "down",
+      "kernelModule": "natsemi",
+      "addressLength": "6",
+      "carrier": "0",
+      "dormant": "0",
+      "flags": "0x1003",
+      "linkMode": "0",
+      "macAddress": "00:00:24:c9:83:10",
+      "ethernetMTU": "1500",
+      "operationalState": "down",
+      "txQueueLength": "1000",
+      "collisions": "0",
+      "multicastPackets": "0",
+      "rxBytes": "0",
+      "rxCompressed": "0",
+      "rxCrcErrors": "0",
+      "rxDropped": "0",
+      "rxErrors": "0",
+      "rxFifoErrors": "0",
+      "rxFrameErrors": "0",
+      "rxLengthErrors": "0",
+      "rxMissedErrors": "0",
+      "rxOverErrors": "0",
+      "rxPackets": "0",
+      "txAbortedErrors": "0",
+      "txBytes": "0",
+      "txCarrierErrors": "0",
+      "txCompressed": "0",
+      "txDropped": "0",
+      "txErrors": "0",
+      "txFifoErrors": "0",
+      "txHeartbeatErrors": "0",
+      "txPackets": "0",
+      "txWindowErrors": "0"
+    },
+    {
+      "name": "adhoc0",
+      "linkQualityMultipliers": [
+      ],
+      "state": "up",
+      "nameFromKernel": "adhoc0",
+      "interfaceMode": 0,
+      "emulatedHostClientInterface": false,
+      "sendTcImmediately": true,
+      "fishEyeTtlIndex": 2,
+      "olsrForwardingTimeout": 4419353,
+      "olsrMessageSequenceNumber": 44944,
+      "olsrInterfaceMetric": 1,
+      "olsrMTU": 1472,
+      "helloEmissionInterval": 20000,
+      "helloValidityTime": 20000,
+      "tcValidityTime": 30000,
+      "midValidityTime": 30000,
+      "hnaValidityTime": 30000,
+      "wireless": true,
+      "icmpRedirect": true,
+      "spoofFilter": true,
+      "ipv4Address": "10.0.101.2",
+      "netmask": "255.255.0.0",
+      "broadcast": "10.0.255.255",
+      "kernelModule": "ath9k",
+      "addressLength": "6",
+      "carrier": "1",
+      "dormant": "0",
+      "flags": "0x1103",
+      "linkMode": "0",
+      "macAddress": "0a:0c:42:6b:96:d2",
+      "ethernetMTU": "1500",
+      "operationalState": "up",
+      "txQueueLength": "1000",
+      "collisions": "0",
+      "multicastPackets": "0",
+      "rxBytes": "274703341",
+      "rxCompressed": "0",
+      "rxCrcErrors": "0",
+      "rxDropped": "0",
+      "rxErrors": "0",
+      "rxFifoErrors": "0",
+      "rxFrameErrors": "0",
+      "rxLengthErrors": "0",
+      "rxMissedErrors": "0",
+      "rxOverErrors": "0",
+      "rxPackets": "221624",
+      "txAbortedErrors": "0",
+      "txBytes": "305445991",
+      "txCarrierErrors": "0",
+      "txCompressed": "0",
+      "txDropped": "0",
+      "txErrors": "0",
+      "txFifoErrors": "0",
+      "txHeartbeatErrors": "0",
+      "txPackets": "247887",
+      "txWindowErrors": "0"
+    },
+    {
+      "name": "adhoc1",
+      "linkQualityMultipliers": [
+      ],
+      "state": "up",
+      "nameFromKernel": "adhoc1",
+      "interfaceMode": 0,
+      "emulatedHostClientInterface": false,
+      "sendTcImmediately": true,
+      "fishEyeTtlIndex": 4,
+      "olsrForwardingTimeout": 4418243,
+      "olsrMessageSequenceNumber": 61758,
+      "olsrInterfaceMetric": 1,
+      "olsrMTU": 1472,
+      "helloEmissionInterval": 20000,
+      "helloValidityTime": 20000,
+      "tcValidityTime": 30000,
+      "midValidityTime": 30000,
+      "hnaValidityTime": 30000,
+      "wireless": true,
+      "icmpRedirect": true,
+      "spoofFilter": true,
+      "ipv4Address": "10.1.101.3",
+      "netmask": "255.255.0.0",
+      "broadcast": "10.1.255.255",
+      "kernelModule": "ath9k",
+      "addressLength": "6",
+      "carrier": "1",
+      "dormant": "0",
+      "flags": "0x1003",
+      "linkMode": "0",
+      "macAddress": "0a:0c:42:6c:3d:2b",
+      "ethernetMTU": "1500",
+      "operationalState": "up",
+      "txQueueLength": "1000",
+      "collisions": "0",
+      "multicastPackets": "0",
+      "rxBytes": "303059100",
+      "rxCompressed": "0",
+      "rxCrcErrors": "0",
+      "rxDropped": "0",
+      "rxErrors": "0",
+      "rxFifoErrors": "0",
+      "rxFrameErrors": "0",
+      "rxLengthErrors": "0",
+      "rxMissedErrors": "0",
+      "rxOverErrors": "0",
+      "rxPackets": "232825",
+      "txAbortedErrors": "0",
+      "txBytes": "122890460",
+      "txCarrierErrors": "0",
+      "txCompressed": "0",
+      "txDropped": "0",
+      "txErrors": "0",
+      "txFifoErrors": "0",
+      "txHeartbeatErrors": "0",
+      "txPackets": "95212",
+      "txWindowErrors": "0"
+    }
+  ],
+  "2hop": [
+    {
+      "ipAddress": "10.0.102.2",
+      "symmetric": true,
+      "multiPointRelay": true,
+      "multiPointRelaySelector": false,
+      "willingness": 7,
+      "twoHopNeighbors": [
+        {
+          "ipAddress": "10.38.0.1"
+        },
+        {
+          "ipAddress": "10.0.35.2"
+        }
+      ]
+    },
+    {
+      "ipAddress": "10.0.35.2",
+      "symmetric": true,
+      "multiPointRelay": false,
+      "multiPointRelaySelector": true,
+      "willingness": 1,
+      "twoHopNeighbors": [
+        {
+          "ipAddress": "10.38.0.1"
+        },
+        {
+          "ipAddress": "10.0.102.2"
+        }
+      ]
+    },
+    {
+      "ipAddress": "10.38.0.1",
+      "symmetric": true,
+      "multiPointRelay": true,
+      "multiPointRelaySelector": false,
+      "willingness": 7,
+      "twoHopNeighbors": [
+        {
+          "ipAddress": "10.0.35.2"
+        },
+        {
+          "ipAddress": "10.0.102.2"
+        }
+      ]
+    }
+  ],
+  "sgw": [
+    {
+      "ipv4": [
+      ]
+    },
+    {
+      "ipv6": [
+      ]
+    }
+  ],
+  "version": {
+    "version": "olsr.org - 0.9.0.2-git_0000000-hash_3cec72d696d3480c5f4ced2ea46d4e26",
+    "date": "2015-09-08 17:04:43",
+    "host": "builder2"
+  },
+  "config": {
+    "olsrPort": 698,
+    "debugLevel": 0,
+    "noFork": false,
+    "hostEmulation": false,
+    "ipVersion": 2,
+    "allowNoInterfaces": true,
+    "typeOfService": 192,
+    "rtProto": 3,
+    "rtTable": 254,
+    "rtTableDefault": 254,
+    "rtTableTunnel": 254,
+    "rtTablePriority": -1,
+    "rtTableTunnelPriority": -1,
+    "rtTableDefauiltOlsrPriority": -1,
+    "rtTableDefaultPriority": -1,
+    "willingness": 3,
+    "willingnessAuto": false,
+    "brokenLinkCost": 4194304,
+    "brokenRouteCost": -1,
+    "fibMetrics": "flat",
+    "defaultIpv6Multicast": "ff02::6d",
+    "defaultIpv4Broadcast": "auto",
+    "defaultInterfaceMode": "mesh",
+    "defaultHelloEmissionInterval": 2.000,
+    "defaultHelloValidityTime": 20.000,
+    "defaultTcEmissionInterval": 5.000,
+    "defaultTcValidityTime": 300.000,
+    "defaultMidEmissionInterval": 5.000,
+    "defaultMidValidityTime": 300.000,
+    "defaultHnaEmissionInterval": 5.000,
+    "defaultHnaValidityTime": 300.000,
+    "defaultAutoDetectChanges": true,
+    "defaultLinkQualityMultipliers": [
+    ],
+    "hna": [
+      {
+        "destination": "10.0.0.0",
+        "genmask": 8,
+        "gateway": "10.101.0.1"
+      },
+      {
+        "destination": "10.101.0.0",
+        "genmask": 16,
+        "gateway": "10.101.0.1"
+      }
+    ],
+    "totalIpcConnectionsAllowed": 0,
+    "ipcAllowedAddresses": [
+    ],
+    "pollRate": 50,
+    "nicChangePollInterval": 3000,
+    "clearScreen": true,
+    "tcRedundancy": 2,
+    "mprCoverage": 3,
+    "linkQualityLevel": 2,
+    "linkQualityAging": 0.050,
+    "linkQualityFisheye": true,
+    "linkQualityAlgorithm": "(null)",
+    "minTcValidTime": 0,
+    "setIpForward": true,
+    "lockFile": "/var/run/olsrd-ipv4.lock",
+    "useNiit": false,
+    "smartGateway": false,
+    "mainIpAddress": "10.101.0.1",
+    "unicastSourceIpAddress": "10.101.0.1",
+    "useSourceIpRoutes": false,
+    "maxPrefixLength": 32,
+    "ipSize": 4,
+    "deleteInternetGatewaysAtStartup": false,
+    "willingnessUpdateInterval": 20000,
+    "maxSendMessageJitter": 5.000,
+    "exitValue": 0,
+    "maxTcValidTime": 5000,
+    "niit4to6InterfaceIndex": 0,
+    "niit6to4InterfaceIndex": 0,
+    "hasIpv4Gateway": false,
+    "hasIpv6Gateway": false,
+    "ioctlSocket": 3,
+    "routeNetlinkSocket": 4,
+    "routeMonitorSocket": 5,
+    "linkQualityNatThreshold": 1.000,
+    "olsrdVersion": "olsr.org - 0.9.0.2-git_0000000-hash_3cec72d696d3480c5f4ced2ea46d4e26",
+    "olsrdBuildDate": "2015-09-08 17:04:43",
+    "olsrdBuildHost": "builder2",
+    "os": "Undefined",
+    "startTime": 1458731581
+  },
+  "plugins": [
+    {
+      "plugin": "olsrd_jsoninfo.so.0.0",
+      "accept": "0.0.0.0"
+    },
+    {
+      "plugin": "olsrd_txtinfo.so.0.1",
+      "accept": "0.0.0.0"
+    },
+    {
+      "plugin": "olsrd_dot_draw.so.0.3",
+      "port": 2004
+    }
+  ]
+}

@@ -1,0 +1,709 @@
+{
+    "bandwidthDetail": [
+        {
+            "average": 5479590.0,
+            "data": [
+                {
+                    "bandwidth": 8494860.0,
+                    "interval": 1.34461
+                },
+                {
+                    "bandwidth": 7656130.0,
+                    "interval": 2.363
+                },
+                {
+                    "bandwidth": 5065790.0,
+                    "interval": 3.06163
+                },
+                {
+                    "bandwidth": 7891010.0,
+                    "interval": 4.35793
+                },
+                {
+                    "bandwidth": 4000770.0,
+                    "interval": 5.00072
+                },
+                {
+                    "bandwidth": 810305.0,
+                    "interval": 6.00143
+                },
+                {
+                    "bandwidth": 782465.0,
+                    "interval": 7.03775
+                },
+                {
+                    "bandwidth": 3154230.0,
+                    "interval": 8.21854
+                },
+                {
+                    "bandwidth": 7705820.0,
+                    "interval": 9.09573
+                },
+                {
+                    "bandwidth": 7815450.0,
+                    "interval": 10.0273
+                }
+            ],
+            "date": "Sat, 26 Mar 2016 11:50:37 GMT",
+            "name": "10.1.35.3 -> 10.1.101.3"
+        },
+        {
+            "average": 14721600.0,
+            "data": [
+                {
+                    "bandwidth": 2176880.0,
+                    "interval": 1.00042
+                },
+                {
+                    "bandwidth": 9244470.0,
+                    "interval": 2.00037
+                },
+                {
+                    "bandwidth": 16414700.0,
+                    "interval": 3.00107
+                },
+                {
+                    "bandwidth": 17630600.0,
+                    "interval": 4.00043
+                },
+                {
+                    "bandwidth": 16736400.0,
+                    "interval": 5.0338
+                },
+                {
+                    "bandwidth": 16335300.0,
+                    "interval": 6.10815
+                },
+                {
+                    "bandwidth": 16797100.0,
+                    "interval": 7.00055
+                },
+                {
+                    "bandwidth": 17091600.0,
+                    "interval": 8.09377
+                },
+                {
+                    "bandwidth": 17193600.0,
+                    "interval": 9.00332
+                },
+                {
+                    "bandwidth": 16805400.0,
+                    "interval": 10.404
+                }
+            ],
+            "date": "Wed, 23 Mar 2016 12:22:54 GMT",
+            "name": "10.1.101.3 -> 10.1.35.3"
+        },
+        {
+            "average": 893417,
+            "data": [
+                {
+                    "bandwidth": 1324600.0,
+                    "interval": 1.01404
+                },
+                {
+                    "bandwidth": 728473.0,
+                    "interval": 2.00812
+                },
+                {
+                    "bandwidth": 902844.0,
+                    "interval": 3.06894
+                },
+                {
+                    "bandwidth": 802264.0,
+                    "interval": 4.00071
+                },
+                {
+                    "bandwidth": 1242960.0,
+                    "interval": 5.05316
+                },
+                {
+                    "bandwidth": 403602.0,
+                    "interval": 6.0371
+                },
+                {
+                    "bandwidth": 1640390.0,
+                    "interval": 7.01969
+                },
+                {
+                    "bandwidth": 608599.0,
+                    "interval": 8.01766
+                },
+                {
+                    "bandwidth": 604220.0,
+                    "interval": 9.02286
+                },
+                {
+                    "bandwidth": 651186.0,
+                    "interval": 10.0273
+                }
+            ],
+            "date": "Wed, 23 Mar 2016 12:26:06 GMT",
+            "name": "10.0.101.2 -> 10.0.102.2"
+        },
+        {
+            "average": 2250160.0,
+            "data": [
+                {
+                    "bandwidth": 2645460.0,
+                    "interval": 1.00664
+                },
+                {
+                    "bandwidth": 1646260.0,
+                    "interval": 2.00702
+                },
+                {
+                    "bandwidth": 1693840.0,
+                    "interval": 3.00688
+                },
+                {
+                    "bandwidth": 1985360.0,
+                    "interval": 4.007
+                },
+                {
+                    "bandwidth": 2277340.0,
+                    "interval": 5.00711
+                },
+                {
+                    "bandwidth": 2323040.0,
+                    "interval": 6.00766
+                },
+                {
+                    "bandwidth": 2547130.0,
+                    "interval": 7.00731
+                },
+                {
+                    "bandwidth": 2534350.0,
+                    "interval": 8.0074
+                },
+                {
+                    "bandwidth": 2536390.0,
+                    "interval": 9.01128
+                },
+                {
+                    "bandwidth": 2309060.0,
+                    "interval": 10.0078
+                }
+            ],
+            "date": "Thu, 25 Nov 1943 21:31:56 GMT",
+            "name": "10.0.102.2 -> 10.0.101.2"
+        },
+        {
+            "average": 5073030.0,
+            "data": [
+                {
+                    "bandwidth": 2872420.0,
+                    "interval": 1.84243
+                },
+                {
+                    "bandwidth": 3354020.0,
+                    "interval": 2.69405
+                },
+                {
+                    "bandwidth": 5229950.0,
+                    "interval": 4.55483
+                },
+                {
+                    "bandwidth": 0.0,
+                    "interval": 4.55528
+                },
+                {
+                    "bandwidth": 5317130.0,
+                    "interval": 5.19133
+                },
+                {
+                    "bandwidth": 7472530.0,
+                    "interval": 6.01662
+                },
+                {
+                    "bandwidth": 8236900.0,
+                    "interval": 7.05255
+                },
+                {
+                    "bandwidth": 6922770.0,
+                    "interval": 8.203
+                },
+                {
+                    "bandwidth": 4824590.0,
+                    "interval": 9.00379
+                },
+                {
+                    "bandwidth": 2957660.0,
+                    "interval": 10.0029
+                }
+            ],
+            "date": "Thu, 25 Nov 1943 21:31:01 GMT",
+            "name": "10.0.102.2 -> 10.0.35.2"
+        },
+        {
+            "average": 799646,
+            "data": [
+                {
+                    "bandwidth": 1383330.0,
+                    "interval": 1.00477
+                },
+                {
+                    "bandwidth": 432115.0,
+                    "interval": 2.00487
+                },
+                {
+                    "bandwidth": 852587.0,
+                    "interval": 3.00493
+                },
+                {
+                    "bandwidth": 863518.0,
+                    "interval": 4.00586
+                },
+                {
+                    "bandwidth": 432434.0,
+                    "interval": 5.00523
+                },
+                {
+                    "bandwidth": 934537.0,
+                    "interval": 6.00508
+                },
+                {
+                    "bandwidth": 885581.0,
+                    "interval": 7.00745
+                },
+                {
+                    "bandwidth": 433196.0,
+                    "interval": 8.00506
+                },
+                {
+                    "bandwidth": 887671.0,
+                    "interval": 9.00507
+                },
+                {
+                    "bandwidth": 887363.0,
+                    "interval": 10.0054
+                }
+            ],
+            "date": "Thu, 25 Nov 1943 17:52:02 GMT",
+            "name": "10.0.38.3 -> 10.0.102.3"
+        },
+        {
+            "average": 7952660.0,
+            "data": [
+                {
+                    "bandwidth": 6769310.0,
+                    "interval": 1.00765
+                },
+                {
+                    "bandwidth": 6742170.0,
+                    "interval": 2.01763
+                },
+                {
+                    "bandwidth": 7206960.0,
+                    "interval": 3.01109
+                },
+                {
+                    "bandwidth": 7869760.0,
+                    "interval": 4.01884
+                },
+                {
+                    "bandwidth": 7670620.0,
+                    "interval": 5.01773
+                },
+                {
+                    "bandwidth": 7651790.0,
+                    "interval": 6.00991
+                },
+                {
+                    "bandwidth": 8561280.0,
+                    "interval": 7.01129
+                },
+                {
+                    "bandwidth": 8736270.0,
+                    "interval": 8.01
+                },
+                {
+                    "bandwidth": 8538140.0,
+                    "interval": 9.00999
+                },
+                {
+                    "bandwidth": 9804470.0,
+                    "interval": 10.0047
+                }
+            ],
+            "date": "Thu, 25 Nov 1943 18:48:26 GMT",
+            "name": "10.0.38.2 -> 10.0.101.2"
+        },
+        {
+            "average": 858913,
+            "data": [
+                {
+                    "bandwidth": 1225710.0,
+                    "interval": 1.00056
+                },
+                {
+                    "bandwidth": 969465.0,
+                    "interval": 2.00053
+                },
+                {
+                    "bandwidth": 872734.0,
+                    "interval": 3.04443
+                },
+                {
+                    "bandwidth": 543953.0,
+                    "interval": 4.03216
+                },
+                {
+                    "bandwidth": 1111680.0,
+                    "interval": 5.0408
+                },
+                {
+                    "bandwidth": 762012.0,
+                    "interval": 6.02178
+                },
+                {
+                    "bandwidth": 1006590.0,
+                    "interval": 7.04289
+                },
+                {
+                    "bandwidth": 993159.0,
+                    "interval": 8.03077
+                },
+                {
+                    "bandwidth": 492859.0,
+                    "interval": 9.1209
+                },
+                {
+                    "bandwidth": 612817.0,
+                    "interval": 10.0358
+                }
+            ],
+            "date": "Sat, 26 Mar 2016 11:51:09 GMT",
+            "name": "10.0.35.2 -> 10.0.102.2"
+        },
+        {
+            "average": 4545280.0,
+            "data": [
+                {
+                    "bandwidth": 6819700.0,
+                    "interval": 1.21206
+                },
+                {
+                    "bandwidth": 7409960.0,
+                    "interval": 2.02897
+                },
+                {
+                    "bandwidth": 2792900.0,
+                    "interval": 3.05974
+                },
+                {
+                    "bandwidth": 2011760.0,
+                    "interval": 4.46772
+                },
+                {
+                    "bandwidth": 3624270.0,
+                    "interval": 5.02706
+                },
+                {
+                    "bandwidth": 4097050.0,
+                    "interval": 6.05058
+                },
+                {
+                    "bandwidth": 2165930.0,
+                    "interval": 7.06141
+                },
+                {
+                    "bandwidth": 3242520.0,
+                    "interval": 8.01527
+                },
+                {
+                    "bandwidth": 6263000.0,
+                    "interval": 9.08722
+                },
+                {
+                    "bandwidth": 7655690.0,
+                    "interval": 10.07
+                }
+            ],
+            "date": "Wed, 23 Mar 2016 12:25:01 GMT",
+            "name": "10.0.101.2 -> 10.0.35.2"
+        },
+        {
+            "average": 868667,
+            "data": [
+                {
+                    "bandwidth": 1079230.0,
+                    "interval": 1.01732
+                },
+                {
+                    "bandwidth": 829662.0,
+                    "interval": 2.01686
+                },
+                {
+                    "bandwidth": 960427.0,
+                    "interval": 3.01408
+                },
+                {
+                    "bandwidth": 817771.0,
+                    "interval": 4.01387
+                },
+                {
+                    "bandwidth": 822169.0,
+                    "interval": 5.00832
+                },
+                {
+                    "bandwidth": 810463.0,
+                    "interval": 6.01712
+                },
+                {
+                    "bandwidth": 840896.0,
+                    "interval": 7.0172
+                },
+                {
+                    "bandwidth": 841013.0,
+                    "interval": 8.01714
+                },
+                {
+                    "bandwidth": 840959.0,
+                    "interval": 9.01714
+                },
+                {
+                    "bandwidth": 840919.0,
+                    "interval": 10.0172
+                }
+            ],
+            "date": "Thu, 25 Nov 1943 18:48:50 GMT",
+            "name": "10.0.38.2 -> 10.0.102.2"
+        },
+        {
+            "average": 782668,
+            "data": [
+                {
+                    "bandwidth": 920545.0,
+                    "interval": 1.00236
+                },
+                {
+                    "bandwidth": 693729.0,
+                    "interval": 2.01256
+                },
+                {
+                    "bandwidth": 747362.0,
+                    "interval": 3.01277
+                },
+                {
+                    "bandwidth": 805857.0,
+                    "interval": 4.01285
+                },
+                {
+                    "bandwidth": 654025.0,
+                    "interval": 5.01293
+                },
+                {
+                    "bandwidth": 931956.0,
+                    "interval": 6.00302
+                },
+                {
+                    "bandwidth": 770822.0,
+                    "interval": 7.00309
+                },
+                {
+                    "bandwidth": 739835.0,
+                    "interval": 8.01348
+                },
+                {
+                    "bandwidth": 794292.0,
+                    "interval": 9.01341
+                },
+                {
+                    "bandwidth": 770778.0,
+                    "interval": 10.0135
+                }
+            ],
+            "date": "Thu, 25 Nov 1943 21:31:27 GMT",
+            "name": "10.0.102.3 -> 10.0.38.3"
+        },
+        {
+            "average": 870466,
+            "data": [
+                {
+                    "bandwidth": 1200420.0,
+                    "interval": 1.0411
+                },
+                {
+                    "bandwidth": 693861.0,
+                    "interval": 2.0006
+                },
+                {
+                    "bandwidth": 841057.0,
+                    "interval": 3.00049
+                },
+                {
+                    "bandwidth": 650654.0,
+                    "interval": 4.00575
+                },
+                {
+                    "bandwidth": 1249400.0,
+                    "interval": 5.00604
+                },
+                {
+                    "bandwidth": 1125270.0,
+                    "interval": 6.0025
+                },
+                {
+                    "bandwidth": 483661.0,
+                    "interval": 7.01676
+                },
+                {
+                    "bandwidth": 970115.0,
+                    "interval": 8.0281
+                },
+                {
+                    "bandwidth": 964309.0,
+                    "interval": 9.04554
+                },
+                {
+                    "bandwidth": 501707.0,
+                    "interval": 10.0233
+                }
+            ],
+            "date": "Sat, 26 Mar 2016 11:50:01 GMT",
+            "name": "10.0.35.2 -> 10.0.38.2"
+        },
+        {
+            "average": 7383220.0,
+            "data": [
+                {
+                    "bandwidth": 6980020.0,
+                    "interval": 1.0107
+                },
+                {
+                    "bandwidth": 7435400.0,
+                    "interval": 2.01606
+                },
+                {
+                    "bandwidth": 7363930.0,
+                    "interval": 3.0153
+                },
+                {
+                    "bandwidth": 7542740.0,
+                    "interval": 4.01564
+                },
+                {
+                    "bandwidth": 7802260.0,
+                    "interval": 5.01863
+                },
+                {
+                    "bandwidth": 7594210.0,
+                    "interval": 6.01526
+                },
+                {
+                    "bandwidth": 7534850.0,
+                    "interval": 7.01975
+                },
+                {
+                    "bandwidth": 7033360.0,
+                    "interval": 8.01448
+                },
+                {
+                    "bandwidth": 6954100.0,
+                    "interval": 9.01551
+                },
+                {
+                    "bandwidth": 7592650.0,
+                    "interval": 10.0154
+                }
+            ],
+            "date": "Thu, 25 Nov 1943 18:48:01 GMT",
+            "name": "10.0.38.2 -> 10.0.35.2"
+        },
+        {
+            "average": 12418200.0,
+            "data": [
+                {
+                    "bandwidth": 14368900.0,
+                    "interval": 1.00289
+                },
+                {
+                    "bandwidth": 13364400.0,
+                    "interval": 2.01269
+                },
+                {
+                    "bandwidth": 12039200.0,
+                    "interval": 3.00664
+                },
+                {
+                    "bandwidth": 12065800.0,
+                    "interval": 4.00031
+                },
+                {
+                    "bandwidth": 12662300.0,
+                    "interval": 5.00206
+                },
+                {
+                    "bandwidth": 13414400.0,
+                    "interval": 6.00032
+                },
+                {
+                    "bandwidth": 7470140.0,
+                    "interval": 7.00053
+                },
+                {
+                    "bandwidth": 9619450.0,
+                    "interval": 8.19579
+                },
+                {
+                    "bandwidth": 15388200.0,
+                    "interval": 9.04268
+                },
+                {
+                    "bandwidth": 14876900.0,
+                    "interval": 10.0004
+                }
+            ],
+            "date": "Sat, 26 Mar 2016 11:48:31 GMT",
+            "name": "10.0.35.2 -> 10.0.101.2"
+        },
+        {
+            "average": 782952,
+            "data": [
+                {
+                    "bandwidth": 1032610.0,
+                    "interval": 1.02932
+                },
+                {
+                    "bandwidth": 669449.0,
+                    "interval": 2.04125
+                },
+                {
+                    "bandwidth": 999485.0,
+                    "interval": 3.04625
+                },
+                {
+                    "bandwidth": 610372.0,
+                    "interval": 4.04132
+                },
+                {
+                    "bandwidth": 912940.0,
+                    "interval": 5.03924
+                },
+                {
+                    "bandwidth": 805107.0,
+                    "interval": 6.01123
+                },
+                {
+                    "bandwidth": 1095910.0,
+                    "interval": 7.0557
+                },
+                {
+                    "bandwidth": 575355.0,
+                    "interval": 8.00982
+                },
+                {
+                    "bandwidth": 559178.0,
+                    "interval": 9.01244
+                },
+                {
+                    "bandwidth": 538641.0,
+                    "interval": 10.0099
+                }
+            ],
+            "date": "Wed, 23 Mar 2016 12:25:32 GMT",
+            "name": "10.0.101.2 -> 10.0.38.2"
+        }
+    ]
+}
