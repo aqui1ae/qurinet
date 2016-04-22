@@ -19,7 +19,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin
 . /etc/netd/netd.conf.site$SITENO
 
 #legacy - change hostname, why?
-uci set system.@system[0].hostname=$SITENO
+uci set system.@system[0].hostname=site$SITENO
 uci commit system
 echo $(uci get system.@system[0].hostname) > /proc/sys/kernel/hostname
 
@@ -36,7 +36,6 @@ function getfreq()
   if [ $MODE = "11a" ]; then
     freq=`iw phy phy2 info | grep MHz | grep "\[${CHAN}\]" | awk -F' ' '{if($2 > 5000) print $2 }'`
   fi
-
   
   return $freq
 }
@@ -77,7 +76,7 @@ function phy_config(){
 
   iw phy $PHY set txpower fixed 20dBm
   #delete iw phy $PHY set coverage 30
-#   #distance calculates coverage class
+  #distance calculates coverage class
   #this determines some timings based on time-of-flight delays
   iw phy $PHY set distance $DISTANCE
   if [[ $RTS ]]
@@ -133,8 +132,8 @@ function ap_config()
     echo "hw_mode=a" >> /tmp/${DEV}.conf            
   fi 
   # Mac address filtering, set to 0 to disable
-  echo "macaddr_acl=1" >> /tmp/${DEV}.conf
-
+  echo "macaddr_acl=0" >> /tmp/${DEV}.conf
+  # echo "accept_mac_file=/etc/mac_whitelist" >> /tmp/${DEV}.conf
 
   # Start hostapd
   hostapd /tmp/${DEV}.conf -B
@@ -265,18 +264,14 @@ case "${1}" in
     # dhcp, uses new dnsmasq.conf.base 2015/03/19
     if [ $DHCPD -eq 1 ]; then
       killall dnsmasq
+      cp /etc/dnsmasq.conf.base /etc/dnsmasq.conf
       touch /tmp/dnsmasq.leases
       echo "dhcp-range=$IP_PREFIX.$SITENO.100.100,$IP_PREFIX.$SITENO.100.199,12h" >> /etc/dnsmasq.conf
       dnsmasq
     fi
 
     if [ $OLSRD -eq 1 ]; then
-      killall olsrd
-      cp /etc/olsrd.conf.base /etc/olsrd.conf
-      echo "Hna4 {" >> /etc/olsrd.conf
-      echo "$IP_PREFIX.$SITENO.0.0 255.255.0.0" >> /etc/olsrd.conf
-      echo "}" >> /etc/olsrd.conf
-      olsrd -f /etc/olsrd.conf -d 0
+      ${0} restart_olsr      
     else 
       echo "Setting static routes"
       
@@ -368,6 +363,15 @@ case "${1}" in
   *)
     echo "Usage: ${0} {start|stop|reload|restart|status}"
     exit 1
+    ;;
+  restart_olsr)
+    killall olsrd
+    cp /etc/olsrd.conf.base /etc/olsrd.conf
+    echo "Hna4 {" >> /etc/olsrd.conf
+    echo "$IP_PREFIX.$SITENO.0.0 255.255.0.0" >> /etc/olsrd.conf
+    echo "}" >> /etc/olsrd.conf
+    olsrd -f /etc/olsrd.conf -d 0
+    
     ;;
 esac
 
