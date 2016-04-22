@@ -359,11 +359,6 @@ case "${1}" in
       fi
     fi
     ;;
-
-  *)
-    echo "Usage: ${0} {start|stop|reload|restart|status}"
-    exit 1
-    ;;
   restart_olsr)
     killall olsrd
     cp /etc/olsrd.conf.base /etc/olsrd.conf
@@ -373,6 +368,11 @@ case "${1}" in
     olsrd -f /etc/olsrd.conf -d 0
     
     ;;
-esac
+
+  *)
+    echo "Usage: ${0} {start|stop|reload|restart|status|restart_ap|restart_olsr}"
+    exit 1
+    ;;
+  esac
 
 # End $rc_base/init.d/
