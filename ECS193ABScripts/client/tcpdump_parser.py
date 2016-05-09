@@ -6,7 +6,7 @@ import subprocess
 TCPDUMP_DIRECTORY = 'tcpdump/'
 FILE_BASE_NAME = 'tcpdump_'
 
-MAX_TIME = 99
+MAX_TIME = 60
 SOURCE_IP = 2
 SIZE = 12
 TIME = 1
@@ -137,10 +137,10 @@ for tcpdump_file in os.listdir(TCPDUMP_DIRECTORY):
 
     for key, val in summaryData.items():
         val['size'] = (float(val['size']) / val['COUNT'])
-        val['HNA'] = (float(val['HNA']) / MAX_TIME) * 60 
-        val['TC'] = (float(val['TC']) / MAX_TIME) * 60 
-        val['HELLO'] = (float(val['HELLO']) / MAX_TIME) * 60 
-        val['MID'] = (float(val['MID']) / MAX_TIME) * 60 
+        val['HNA'] = float(val['HNA'])
+        val['TC'] = float(val['TC'])
+        val['HELLO'] = float(val['HELLO'])
+        val['MID'] = float(val['MID'])  
         routerSummary.append({
             'node': key,
             'Size per Minute': val['size'],

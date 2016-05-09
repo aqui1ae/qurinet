@@ -43,7 +43,7 @@ for olsr_file in os.listdir(OLSR_DIRECTORY):
         sites = []
         for neighbor in olsrjsonobj['neighbors']:
             if neighbor['multiPointRelaySelector']:
-                sites.append(neighbor['ipAddress'].split('.')[2])
+                sites.append(neighbor['ipv4Address'].split('.')[2])
         
         nodeList.append({
             'name': olsrjsonobj['interfaces'][1]['ipv4Address'].split('.')[2],
@@ -64,11 +64,11 @@ with open(OLSRfilenames[0]) as olsrjsonfile:
         if os.path.isfile(IPERF_DIRECTORY + '0' + sourcenode + destinationnode + FILE_TYPE):
             with open(IPERF_DIRECTORY + '0' + sourcenode + destinationnode + FILE_TYPE) as iperfjsonfile:
                 iperfjsonobj = json.loads(iperfjsonfile.read())
-                bandwidth = int(iperfjsonobj['end']['sum_received']['bits_per_second'])
+                bandwidth = 1#int(iperfjsonobj['end']['sum_received']['bits_per_second'])
         elif os.path.isfile(IPERF_DIRECTORY + '1' + sourcenode + destinationnode + FILE_TYPE):
             with open(IPERF_DIRECTORY + '1' + sourcenode + destinationnode + FILE_TYPE) as iperfjsonfile:
                 iperfjsonobj = json.loads(iperfjsonfile.read())
-                bandwidth = int(iperfjsonobj['end']['sum_received']['bits_per_second'])
+                bandwidth = 1#int(iperfjsonobj['end']['sum_received']['bits_per_second'])
         source = pair['lastHopIP'].split('.')[2]
         target = pair['destinationIP'].split('.')[2]
         if source == '0':
@@ -78,7 +78,7 @@ with open(OLSRfilenames[0]) as olsrjsonfile:
         connections.append({
             'source': source,
             'target': target,
-            'etx': float(1) / (float(pair['linkQuality']) * float(pair['neighborLinkQuality'])),
+            'etx': 1,#float(1) / (float(pair['linkQuality']) * float(pair['neighborLinkQuality'])),
             'bandwidth': bandwidth,
             'linkColor': linkColor(sourcenode, destinationnode, nodeList)
         })

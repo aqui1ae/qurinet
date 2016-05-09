@@ -1,15 +1,15 @@
-PING 10.0.101.2 (10.0.101.2): 56 data bytes
-64 bytes from 10.0.101.2: seq=0 ttl=64 time=4.263 ms
-64 bytes from 10.0.101.2: seq=1 ttl=64 time=3.372 ms
-64 bytes from 10.0.101.2: seq=2 ttl=64 time=3.406 ms
-64 bytes from 10.0.101.2: seq=3 ttl=64 time=3.344 ms
-64 bytes from 10.0.101.2: seq=4 ttl=64 time=21.817 ms
-64 bytes from 10.0.101.2: seq=5 ttl=64 time=3.364 ms
-64 bytes from 10.0.101.2: seq=6 ttl=64 time=3.538 ms
-64 bytes from 10.0.101.2: seq=7 ttl=64 time=4.911 ms
-64 bytes from 10.0.101.2: seq=8 ttl=64 time=7.314 ms
-64 bytes from 10.0.101.2: seq=9 ttl=64 time=7.793 ms
+PING 10.1.38.3 (10.1.38.3): 56 data bytes
+64 bytes from 10.1.38.3: seq=0 ttl=64 time=7.129 ms
+64 bytes from 10.1.38.3: seq=1 ttl=64 time=3.160 ms
+64 bytes from 10.1.38.3: seq=2 ttl=64 time=3.117 ms
+64 bytes from 10.1.38.3: seq=3 ttl=64 time=3.130 ms
+64 bytes from 10.1.38.3: seq=4 ttl=64 time=4.682 ms
+64 bytes from 10.1.38.3: seq=5 ttl=64 time=3.119 ms
+64 bytes from 10.1.38.3: seq=6 ttl=64 time=4.559 ms
+64 bytes from 10.1.38.3: seq=7 ttl=64 time=3.478 ms
+64 bytes from 10.1.38.3: seq=8 ttl=64 time=3.052 ms
+64 bytes from 10.1.38.3: seq=9 ttl=64 time=3.049 ms
 
---- 10.0.101.2 ping statistics ---
+--- 10.1.38.3 ping statistics ---
 10 packets transmitted, 10 packets received, 0% packet loss
-round-trip min/avg/max = 3.344/6.312/21.817 ms
+round-trip min/avg/max = 3.049/3.847/7.129 ms
