@@ -39,7 +39,6 @@ def linkColor(source, target, nodeList):
 for olsr_file in os.listdir(OLSR_DIRECTORY):
     with open(OLSR_DIRECTORY + olsr_file) as olsrjsonfile:
         olsrjsonobj = json.loads(olsrjsonfile.read())
-        
         sites = []
         for neighbor in olsrjsonobj['neighbors']:
             if neighbor['multiPointRelaySelector']:
@@ -52,38 +51,32 @@ for olsr_file in os.listdir(OLSR_DIRECTORY):
             'MPRSelector': ','.join(sites)
         })
         
-#with open(OLSRfilenames[0]) as olsrjsonfile:
-    #olsrjsonobj = json.loads(olsrjsonfile.read())      
     links = olsrjsonobj['topology']
     for pair in links:
         sourcenode = pair['lastHopIP'].split('.')[2]
         destinationnode = pair['destinationIP'].split('.')[2]
         
-        bandwidth = DEFAULT_BANDWIDTH
+        etx = float(pair['neighborLinkQuality'])
         
-        if os.path.isfile(IPERF_DIRECTORY + '0' + sourcenode + destinationnode + FILE_TYPE):
-            with open(IPERF_DIRECTORY + '0' + sourcenode + destinationnode + FILE_TYPE) as iperfjsonfile:
-                iperfjsonobj = json.loads(iperfjsonfile.read())
-                bandwidth = pair#int(iperfjsonobj['end']['sum_received']['bits_per_second'])
-        elif os.path.isfile(IPERF_DIRECTORY + '1' + sourcenode + destinationnode + FILE_TYPE):
-            with open(IPERF_DIRECTORY + '1' + sourcenode + destinationnode + FILE_TYPE) as iperfjsonfile:
-                iperfjsonobj = json.loads(iperfjsonfile.read())
-                bandwidth = 1#int(iperfjsonobj['end']['sum_received']['bits_per_second'])
         source = pair['lastHopIP'].split('.')[2]
         target = pair['destinationIP'].split('.')[2]
+
+        validityTime = float(pair['validityTime'])
+
         if source == '0':
             source = pair['lastHopIP'].split('.')[1]           
         if target == '0':
             target = pair['destinationIP'].split('.')[1]           
+
         connections.append({
             'source': source,
             'target': target,
-            'etx': 1,#float(1) / (float(pair['linkQuality']) * float(pair['neighborLinkQuality'])),
-            'bandwidth': bandwidth,
+            'etx': etx,#float(1) / (float(pair['linkQuality']) * float(pair['neighborLinkQuality'])),
+            'validityTime': validityTime,
             'linkColor': linkColor(sourcenode, destinationnode, nodeList)
         })
                 
-print json.dumps({
+print (json.dumps({
     'nodes': nodeList,
     'connections': connections
-})
+}))
