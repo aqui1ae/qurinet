@@ -98,6 +98,7 @@ function ahdemo_config()
   echo "Creating an adhoc interface $PHY $DEV"
 
   iw phy $PHY interface add $DEV type adhoc
+  iw phy $PHY set antenna 1 1
   ip link set ${DEV} down
   sleep 1s
   mod=`ifconfig ${DEV} | grep HWaddr | awk -F' ' '{print $5}' | awk -F':' '{ print "0A:"$2":"$3":"$4":"$5":"$6 }'`
@@ -123,7 +124,12 @@ function ap_config()
   echo "Starting hostapd for $DEV"
   # Hostapd, create the config file
   echo "interface=${DEV}" > /tmp/${DEV}.conf 
-  echo "ssid=$SITENO-${INF}" >> /tmp/${DEV}.conf      
+  if [ ${DEV} = "wifi0" ] ; then
+    echo “ssid=qurinet0” >> /tmp/${DEV}.conf
+  else
+    echo “ssid=qurinet1” >> /tmp/${DEV}.conf
+  fi
+
   echo "channel=$CHAN" >> /tmp/${DEV}.conf
   if [ $MODE = "11g" ]; then
     echo "hw_mode=g" >> /tmp/${DEV}.conf  
